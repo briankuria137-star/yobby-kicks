@@ -1,0 +1,319 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { createClient } from "@/supabase/client";
+
+const supabase = createClient();
+import { Order, OrderItem, Product } from "@/types";
+import { formatCurrency, formatDateTime, getOrderStatusColor, getOrderStatusLabel } from "@/lib/utils";
+import { Plus, ChevronDown, ChevronUp, Package } from "lucide-react";
+
+type OrderWithItems = Order & { items: OrderItem[] };
+
+const STATUS_OPTIONS: Order["status"][] = [
+  "pending",
+  "confirmed",
+  "paid",
+  "packed",
+  "out_for_delivery",
+  "completed",
+  "cancelled",
+];
+
+export default function AdminOrdersPage() {
+  const [orders, setOrders] = useState<OrderWithItems[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
+
+  const [formData, setFormData] = useState({
+    customer_name: "",
+    customer_phone: "",
+    customer_location: "",
+    notes: "",
+  });
+  const [selectedItems, setSelectedItems] = useState<
+    { product_id: string; quantity: number; price: number; name: string; size: string }[]
+  >([]);
+
+  const fetchOrders = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("orders")
+      .select(`*, order_items(*)`)
+      .order("created_at", { ascending: false });
+    if (!error && data) {
+      setOrders(data as OrderWithItems[]);
+    }
+    setLoading(false);
+  }, [supabase]);
+
+  const fetchProducts = useCallback(async () => {
+    const { data } = await supabase
+      .from("products")
+      .select("id, name, size, price, stock_quantity, status")
+      .eq("status", "available")
+      .gt("stock_quantity", 0)
+      .order("name");
+    if (data) setProducts(data);
+  }, [supabase]);
+
+  useEffect(() => {
+    fetchOrders();
+    fetchProducts();
+  }, [fetchOrders, fetchProducts]);
+
+  const handleCreateOrder = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedItems.length === 0) {
+      alert("Add at least one product");
+      return;
+    }
+
+    const totalAmount = selectedItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+    const { data: orderData, error: orderError } = await supabase
+      .from("orders")
+      .insert({
+        customer_name: formData.customer_name || null,
+        customer_phone: formData.customer_phone || null,
+        customer_location: formData.customer_location || null,
+        total_amount: totalAmount,
+        notes: formData.notes || null,
+      })
+      .select()
+      .single();
+
+    if (orderError || !orderData) {
+      alert(orderError?.message || "Error creating order");
+      return;
+    }
+
+    for (const item of selectedItems) {
+      await supabase.from("order_items").insert({
+        order_id: orderData.id,
+        product_id: item.product_id,
+        product_name: item.name,
+        size: item.size,
+        price: item.price,
+        quantity: item.quantity,
+      });
+    }
+
+    setFormData({ customer_name: "", customer_phone: "", customer_location: "", notes: "" });
+    setSelectedItems([]);
+    setShowForm(false);
+    fetchOrders();
+  };
+
+  const handleStatusChange = async (orderId: string, newStatus: Order["status"]) => {
+    await supabase.from("orders").update({ status: newStatus }).eq("id", orderId);
+    fetchOrders();
+  };
+
+  const addItem = (product: Product) => {
+    const existing = selectedItems.find((i) => i.product_id === product.id);
+    if (existing) {
+      setSelectedItems(
+        selectedItems.map((i) =>
+          i.product_id === product.id ? { ...i, quantity: i.quantity + 1 } : i
+        )
+      );
+    } else {
+      setSelectedItems([
+        ...selectedItems,
+        {
+          product_id: product.id,
+          name: product.name,
+          size: product.size,
+          price: product.price,
+          quantity: 1,
+        },
+      ]);
+    }
+  };
+
+  const removeItem = (productId: string) => {
+    setSelectedItems(selectedItems.filter((i) => i.product_id !== productId));
+  };
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-gray-900">Orders</h1>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800"
+        >
+          <Plus className="w-4 h-4" />
+          {showForm ? "Cancel" : "New Order"}
+        </button>
+      </div>
+
+      {showForm && (
+        <div className="bg-white rounded-lg shadow-sm border p-4 mb-6">
+          <h2 className="font-semibold text-gray-900 mb-4">Create Order</h2>
+          <form onSubmit={handleCreateOrder} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <input
+                placeholder="Customer Name"
+                value={formData.customer_name}
+                onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              <input
+                placeholder="Phone Number"
+                value={formData.customer_phone}
+                onChange={(e) => setFormData({ ...formData, customer_phone: e.target.value })}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              <input
+                placeholder="Location"
+                value={formData.customer_location}
+                onChange={(e) => setFormData({ ...formData, customer_location: e.target.value })}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Add Products</label>
+              <div className="border rounded-md p-2 max-h-40 overflow-y-auto">
+                {products.length === 0 ? (
+                  <p className="text-sm text-gray-500 p-2">No available products</p>
+                ) : (
+                  products.map((p) => (
+                    <div key={p.id} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                      <div className="text-sm">
+                        <span className="font-medium">{p.name}</span>
+                        <span className="text-gray-500 ml-2">Size {p.size}</span>
+                        <span className="text-gray-500 ml-2">{formatCurrency(p.price)}</span>
+                        <span className="text-gray-400 ml-2">({p.stock_quantity} left)</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => addItem(p)}
+                        className="text-sm text-blue-600 hover:underline"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {selectedItems.length > 0 && (
+              <div className="bg-gray-50 rounded-md p-3">
+                <p className="text-sm font-medium mb-2">Selected Items</p>
+                {selectedItems.map((item) => (
+                  <div key={item.product_id} className="flex items-center justify-between text-sm py-1">
+                    <span>
+                      {item.name} (Size {item.size}) x{item.quantity} = {formatCurrency(item.price * item.quantity)}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removeItem(item.product_id)}
+                      className="text-red-500 hover:underline text-xs"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <p className="text-sm font-semibold mt-2 pt-2 border-t">
+                  Total: {formatCurrency(selectedItems.reduce((s, i) => s + i.price * i.quantity, 0))}
+                </p>
+              </div>
+            )}
+
+            <textarea
+              placeholder="Notes (optional)"
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              rows={2}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+
+            <button
+              type="submit"
+              className="bg-primary text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-gray-800"
+            >
+              Create Order
+            </button>
+          </form>
+        </div>
+      )}
+
+      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+        {loading ? (
+          <div className="p-8 text-center text-gray-500">Loading...</div>
+        ) : orders.length === 0 ? (
+          <div className="p-8 text-center text-gray-500">
+            <Package className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+            <p>No orders yet.</p>
+          </div>
+        ) : (
+          <div className="divide-y">
+            {orders.map((order) => (
+              <div key={order.id} className="p-4">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-1">
+                      <p className="font-medium text-sm">Order #{order.id.slice(0, 8)}</p>
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${getOrderStatusColor(order.status)}`}>
+                        {getOrderStatusLabel(order.status)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      {order.customer_name || "No name"} · {order.customer_phone || "No phone"} · {formatDateTime(order.created_at)}
+                    </p>
+                    <p className="text-sm font-medium mt-1">{formatCurrency(order.total_amount)}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <select
+                      value={order.status}
+                      onChange={(e) => handleStatusChange(order.id, e.target.value as Order["status"])}
+                      className="text-xs border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                      {STATUS_OPTIONS.map((s) => (
+                        <option key={s} value={s}>{getOrderStatusLabel(s)}</option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}
+                      className="p-1 hover:bg-gray-100 rounded"
+                    >
+                      {expandedOrder === order.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                {expandedOrder === order.id && (
+                  <div className="mt-3 pt-3 border-t text-sm">
+                    <p className="text-gray-600 mb-2">
+                      <span className="font-medium">Location:</span> {order.customer_location || "Not provided"}
+                    </p>
+                    {order.notes && (
+                      <p className="text-gray-600 mb-2">
+                        <span className="font-medium">Notes:</span> {order.notes}
+                      </p>
+                    )}
+                    <p className="font-medium mb-1">Items:</p>
+                    <div className="space-y-1">
+                      {order.items?.map((item) => (
+                        <div key={item.id} className="flex justify-between text-gray-600">
+                          <span>{item.product_name} (Size {item.size}) x{item.quantity}</span>
+                          <span>{formatCurrency(item.price * item.quantity)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
