@@ -7,13 +7,14 @@ import { StoreFooter } from "@/components/store/StoreFooter";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const supabase = createClient();
+  const { id } = await params;
+  const supabase: any = await createClient();
   const { data: product } = await supabase
     .from("products")
     .select("name, description")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   return {
@@ -28,14 +29,15 @@ export async function generateMetadata({
 export default async function ProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const supabase = createClient();
+  const { id } = await params;
+  const supabase: any = await createClient();
 
   const { data: product } = await supabase
     .from("products")
     .select(`*, product_images(*)`)
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!product) {
@@ -43,7 +45,7 @@ export default async function ProductPage({
   }
 
   const { data: settings } = await supabase.from("settings").select("*");
-  const settingsMap = new Map(settings?.map((s) => [s.key, s.value]));
+  const settingsMap = new Map<string, string>(settings?.map((s: any) => [s.key, s.value] as [string, string]) || []);
 
   return (
     <div className="min-h-screen flex flex-col">

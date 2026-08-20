@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export default async function AdminDashboard() {
-  const supabase = createClient();
+  const supabase: any = await createClient();
 
   // Get counts
   const { count: availableCount } = await supabase
@@ -43,7 +43,7 @@ export default async function AdminDashboard() {
     .eq("status", "available");
 
   const totalStockValue =
-    stockValue?.reduce((sum, p) => sum + p.buying_cost * p.stock_quantity, 0) ||
+    stockValue?.reduce((sum: number, p: any) => sum + p.buying_cost * p.stock_quantity, 0) ||
     0;
 
   // Today's sales
@@ -55,9 +55,9 @@ export default async function AdminDashboard() {
     .lte("created_at", `${today}T23:59:59`);
 
   const todayRevenue =
-    todaySales?.reduce((sum, s) => sum + s.selling_price, 0) || 0;
+    todaySales?.reduce((sum: number, s: any) => sum + s.selling_price, 0) || 0;
   const todayProfit =
-    todaySales?.reduce((sum, s) => sum + s.profit, 0) || 0;
+    todaySales?.reduce((sum: number, s: any) => sum + s.profit, 0) || 0;
 
   // This week's sales
   const weekStart = new Date();
@@ -69,9 +69,9 @@ export default async function AdminDashboard() {
     .gte("created_at", weekStart.toISOString());
 
   const weekRevenue =
-    weekSales?.reduce((sum, s) => sum + s.selling_price, 0) || 0;
+    weekSales?.reduce((sum: number, s: any) => sum + s.selling_price, 0) || 0;
   const weekProfit =
-    weekSales?.reduce((sum, s) => sum + s.profit, 0) || 0;
+    weekSales?.reduce((sum: number, s: any) => sum + s.profit, 0) || 0;
 
   // This month's sales
   const monthStart = new Date();
@@ -83,9 +83,9 @@ export default async function AdminDashboard() {
     .gte("created_at", monthStart.toISOString());
 
   const monthRevenue =
-    monthSales?.reduce((sum, s) => sum + s.selling_price, 0) || 0;
+    monthSales?.reduce((sum: number, s: any) => sum + s.selling_price, 0) || 0;
   const monthProfit =
-    monthSales?.reduce((sum, s) => sum + s.profit, 0) || 0;
+    monthSales?.reduce((sum: number, s: any) => sum + s.profit, 0) || 0;
 
   // Total sales
   const { data: allSales } = await supabase
@@ -93,11 +93,11 @@ export default async function AdminDashboard() {
     .select("selling_price, profit, buying_price");
 
   const totalRevenue =
-    allSales?.reduce((sum, s) => sum + s.selling_price, 0) || 0;
+    allSales?.reduce((sum: number, s: any) => sum + s.selling_price, 0) || 0;
   const totalProfit =
-    allSales?.reduce((sum, s) => sum + s.profit, 0) || 0;
+    allSales?.reduce((sum: number, s: any) => sum + s.profit, 0) || 0;
   const totalBuyingCost =
-    allSales?.reduce((sum, s) => sum + s.buying_price, 0) || 0;
+    allSales?.reduce((sum: number, s: any) => sum + s.buying_price, 0) || 0;
   const totalProductsSold = allSales?.length || 0;
 
   const hasSales = totalProductsSold > 0;
@@ -238,7 +238,7 @@ export default async function AdminDashboard() {
             </h2>
           </div>
           <div className="divide-y">
-            {lowStock.map((product) => (
+            {lowStock.map((product: any) => (
               <div
                 key={product.id}
                 className="p-4 flex items-center justify-between"

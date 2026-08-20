@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/supabase/client";
 
-const supabase = createClient();
+const supabase: any = createClient();
 import { Setting } from "@/types";
 import { Save, Store } from "lucide-react";
 
@@ -18,7 +18,7 @@ export default function AdminSettingsPage() {
       const { data } = await supabase.from("settings").select("*");
       if (data) {
         const map: Record<string, string> = {};
-        data.forEach((s) => (map[s.key] = s.value));
+        data.forEach((s: any) => (map[s.key] = s.value));
         setSettings(map);
       }
       setLoading(false);

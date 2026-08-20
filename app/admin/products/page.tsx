@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/supabase/client";
 
-const supabase = createClient();
+const supabase: any = createClient();
 import { Product, ProductImage } from "@/types";
 import { formatCurrency } from "@/lib/utils";
 import {
@@ -31,15 +31,15 @@ export default function AdminProductsPage() {
 
   const [formData, setFormData] = useState({
     name: "",
-    category: "men" as const,
+    category: "men" as "men" | "women" | "kids" | "unisex",
     size: "",
     price: "",
     buying_cost: "",
-    condition: "good" as const,
+    condition: "good" as "new" | "excellent" | "good" | "fair",
     condition_description: "",
     description: "",
     stock_quantity: "1",
-    status: "available" as const,
+    status: "available" as "available" | "sold" | "archived",
   });
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);

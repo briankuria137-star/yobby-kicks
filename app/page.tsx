@@ -12,9 +12,10 @@ export const metadata = {
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: { q?: string; category?: string };
+  searchParams: Promise<{ q?: string; category?: string }>;
 }) {
-  const supabase = createClient();
+  const params = await searchParams;
+  const supabase: any = await createClient();
 
   let query = supabase
     .from("products")
@@ -23,12 +24,12 @@ export default async function HomePage({
     .gt("stock_quantity", 0)
     .order("created_at", { ascending: false });
 
-  if (searchParams.category && searchParams.category !== "all") {
-    query = query.eq("category", searchParams.category);
+  if (params.category && params.category !== "all") {
+    query = query.eq("category", params.category);
   }
 
-  if (searchParams.q) {
-    query = query.ilike("name", `%${searchParams.q}%`);
+  if (params.q) {
+    query = query.ilike("name", `%${params.q}%`);
   }
 
   const { data: products, error } = await query;
@@ -38,7 +39,7 @@ export default async function HomePage({
   }
 
   const { data: settings } = await supabase.from("settings").select("*");
-  const settingsMap = new Map(settings?.map((s) => [s.key, s.value]));
+  const settingsMap = new Map<string, string>(settings?.map((s: any) => [s.key, s.value] as [string, string]) || []);
 
   return (
     <div className="min-h-screen flex flex-col">

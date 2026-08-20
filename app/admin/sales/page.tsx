@@ -3,16 +3,16 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 import { TrendingUp } from "lucide-react";
 
 export default async function AdminSalesPage() {
-  const supabase = createClient();
+  const supabase: any = await createClient();
 
   const { data: sales } = await supabase
     .from("sales")
     .select("*")
     .order("created_at", { ascending: false });
 
-  const totalRevenue = sales?.reduce((sum, s) => sum + s.selling_price, 0) || 0;
-  const totalProfit = sales?.reduce((sum, s) => sum + s.profit, 0) || 0;
-  const totalCost = sales?.reduce((sum, s) => sum + s.buying_price, 0) || 0;
+  const totalRevenue = sales?.reduce((sum: number, s: any) => sum + s.selling_price, 0) || 0;
+  const totalProfit = sales?.reduce((sum: number, s: any) => sum + s.profit, 0) || 0;
+  const totalCost = sales?.reduce((sum: number, s: any) => sum + s.buying_price, 0) || 0;
 
   return (
     <div>
@@ -50,7 +50,7 @@ export default async function AdminSalesPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y">
-                  {sales.map((sale) => (
+                  {sales.map((sale: any) => (
                     <tr key={sale.id} className="hover:bg-gray-50">
                       <td className="px-4 py-3 text-gray-600">{formatDate(sale.created_at)}</td>
                       <td className="px-4 py-3 font-medium">{sale.product_name}</td>

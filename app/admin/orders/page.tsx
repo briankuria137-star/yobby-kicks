@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/supabase/client";
 
-const supabase = createClient();
+const supabase: any = createClient();
 import { Order, OrderItem, Product } from "@/types";
 import { formatCurrency, formatDateTime, getOrderStatusColor, getOrderStatusLabel } from "@/lib/utils";
 import { Plus, ChevronDown, ChevronUp, Package } from "lucide-react";
@@ -75,15 +75,16 @@ export default function AdminOrdersPage() {
 
     const { data: orderData, error: orderError } = await supabase
       .from("orders")
-      .insert({
+      .insert([{
         customer_name: formData.customer_name || null,
         customer_phone: formData.customer_phone || null,
         customer_location: formData.customer_location || null,
         total_amount: totalAmount,
         notes: formData.notes || null,
-      })
+      }] as any)
       .select()
       .single();
+    const orderId = (orderData as { id: string } | null)?.id;
 
     if (orderError || !orderData) {
       alert(orderError?.message || "Error creating order");
@@ -91,24 +92,26 @@ export default function AdminOrdersPage() {
     }
 
     for (const item of selectedItems) {
-      await supabase.from("order_items").insert({
-        order_id: orderData.id,
+      await supabase.from("order_items").insert([{
+        order_id: orderId!,
         product_id: item.product_id,
         product_name: item.name,
         size: item.size,
         price: item.price,
         quantity: item.quantity,
-      });
+      }]as any);
     }
 
     setFormData({ customer_name: "", customer_phone: "", customer_location: "", notes: "" });
     setSelectedItems([]);
     setShowForm(false);
     fetchOrders();
+
+
   };
 
   const handleStatusChange = async (orderId: string, newStatus: Order["status"]) => {
-    await supabase.from("orders").update({ status: newStatus }).eq("id", orderId);
+    await supabase.from("orders").update({ status: newStatus } as any).eq("id", orderId);
     fetchOrders();
   };
 
