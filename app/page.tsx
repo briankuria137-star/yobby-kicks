@@ -3,10 +3,17 @@ import { ProductGrid } from "@/components/store/ProductGrid";
 import { StoreHeader } from "@/components/store/StoreHeader";
 import { StoreFooter } from "@/components/store/StoreFooter";
 import { SearchFilters } from "@/components/store/SearchFilters";
+import {
+  ShieldCheck,
+  MessageCircle,
+  Truck,
+  Sparkles,
+} from "lucide-react";
 
 export const metadata = {
-  title: "MWIHO KICKS | Browse Available Shoes",
-  description: "Browse our current selection of quality mtumba shoes for men, women, and kids in Mwihoko, Kenya.",
+  title: "YobbyKicks_KE | Quality Footwear in Kenya",
+  description:
+    "Shop quality mtumba footwear for men, women and kids from YobbyKicks_KE. Browse available pairs and order conveniently via WhatsApp.",
 };
 
 export default async function HomePage({
@@ -38,45 +45,238 @@ export default async function HomePage({
     console.error("Error fetching products:", error);
   }
 
-  const { data: settings } = await supabase.from("settings").select("*");
-  const settingsMap = new Map<string, string>(settings?.map((s: any) => [s.key, s.value] as [string, string]) || []);
+  const { data: settings } = await supabase
+    .from("settings")
+    .select("*");
+
+  const settingsMap = new Map<string, string>(
+    settings?.map((s: any) => [s.key, s.value] as [string, string]) || []
+  );
+
+  const businessName =
+    settingsMap.get("business_name") || "YobbyKicks_KE";
+
+  const description =
+    settingsMap.get("shop_description") ||
+    "Quality footwear. Carefully selected. Ready for you.";
+
+  const location =
+    settingsMap.get("location") || "Mwihoko, Kenya";
+
+  const whatsapp = settingsMap.get("whatsapp_number");
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-cream">
       <StoreHeader settings={settingsMap} />
-      <main className="flex-1">
-        <div className="bg-primary text-white py-8 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-2xl font-bold mb-2">
-              {settingsMap.get("business_name") || "MWIHO KICKS"}
-            </h1>
-            <p className="text-gray-300 text-sm">
-              {settingsMap.get("shop_description") ||
-                "Quality mtumba footwear for men, women, and kids."}
-            </p>
-            <p className="text-gray-400 text-xs mt-1">
-              {settingsMap.get("location") || "Mwihoko, Kenya"}
-            </p>
-          </div>
-        </div>
 
-        <div className="max-w-6xl mx-auto px-4 py-6">
+      <main className="flex-1">
+
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-ink text-white">
+          <div className="luxury-container">
+            <div className="grid min-h-[460px] items-center py-16 md:grid-cols-2 md:py-20">
+
+              <div className="max-w-xl animate-fade-up">
+                <p className="eyebrow mb-5 text-accent">
+                  {location}
+                </p>
+
+                <h1 className="text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                  Step into
+                  <span className="block text-white/60">
+                    something better.
+                  </span>
+                </h1>
+
+                <p className="mt-6 max-w-md text-sm leading-7 text-white/65 sm:text-base">
+                  {description}
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="#shop"
+                    className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-ink transition hover:-translate-y-0.5 hover:bg-white/90"
+                  >
+                    Shop collection
+                  </a>
+
+                  {whatsapp && (
+                    <a
+                      href={`https://wa.me/${whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      WhatsApp us
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <div className="hidden md:flex md:justify-end">
+                <div className="relative h-72 w-72 rounded-full border border-white/10">
+                  <div className="absolute inset-8 rounded-full border border-white/10" />
+                  <div className="absolute inset-16 rounded-full border border-accent/30" />
+
+                  <div className="absolute inset-0 flex items-center justify-center text-center">
+                    <div>
+                      <Sparkles className="mx-auto mb-3 h-7 w-7 text-accent" />
+                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
+                        YobbyKicks
+                      </p>
+                      <p className="mt-2 text-2xl font-black">
+                        KE
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* TRUST BAR */}
+        <section className="border-b border-black/10 bg-white">
+          <div className="luxury-container">
+            <div className="grid grid-cols-2 divide-x divide-black/10 md:grid-cols-4">
+
+              <div className="flex items-center gap-3 px-3 py-5 md:px-6">
+                <ShieldCheck className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-xs font-bold">Quality checked</p>
+                  <p className="mt-0.5 text-[10px] text-muted">
+                    Carefully selected
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 px-3 py-5 md:px-6">
+                <MessageCircle className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-xs font-bold">Easy ordering</p>
+                  <p className="mt-0.5 text-[10px] text-muted">
+                    Order via WhatsApp
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 px-3 py-5 md:px-6">
+                <Truck className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-xs font-bold">Delivery options</p>
+                  <p className="mt-0.5 text-[10px] text-muted">
+                    Ask us about delivery
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 px-3 py-5 md:px-6">
+                <Sparkles className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-xs font-bold">Fresh arrivals</p>
+                  <p className="mt-0.5 text-[10px] text-muted">
+                    New pairs added regularly
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* SHOP */}
+        <section id="shop" className="luxury-container py-12 md:py-16">
+
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow text-accent">
+                The collection
+              </p>
+
+              <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+                Available now
+              </h2>
+
+              <p className="mt-2 max-w-md text-sm text-muted">
+                Browse our current selection. Every pair is subject to
+                availability.
+              </p>
+            </div>
+
+            <div className="text-xs text-muted">
+              {products?.length || 0}{" "}
+              {(products?.length || 0) === 1 ? "pair" : "pairs"} available
+            </div>
+          </div>
+
           <SearchFilters />
 
           {products && products.length > 0 ? (
             <ProductGrid products={products} />
           ) : (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">
-                No shoes available yet.
+            <div className="rounded-2xl border border-black/10 bg-white px-6 py-20 text-center">
+              <Sparkles className="mx-auto h-8 w-8 text-accent" />
+
+              <h3 className="mt-4 text-lg font-bold">
+                New arrivals are coming
+              </h3>
+
+              <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-muted">
+                There are currently no available pairs in this category.
+                Check back soon for fresh arrivals.
               </p>
-              <p className="text-gray-400 text-sm mt-2">
-                Check back soon for new arrivals.
-              </p>
+
+              <a
+                href="/"
+                className="mt-6 inline-flex rounded-full bg-ink px-6 py-3 text-xs font-bold uppercase tracking-widest text-white"
+              >
+                View all shoes
+              </a>
             </div>
           )}
-        </div>
+
+        </section>
+
+        {/* CUSTOMER SERVICE CTA */}
+        <section className="border-y border-black/10 bg-sand/40">
+          <div className="luxury-container py-14">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
+              <div className="max-w-xl">
+                <p className="eyebrow text-accent">
+                  Need help choosing?
+                </p>
+
+                <h2 className="mt-2 text-2xl font-black">
+                  We are happy to help.
+                </h2>
+
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  Ask about sizing, condition, availability, pricing or
+                  delivery before placing your order.
+                </p>
+              </div>
+
+              {whatsapp && (
+                <a
+                  href={`https://wa.me/${whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:-translate-y-0.5"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Chat with us
+                </a>
+              )}
+
+            </div>
+          </div>
+        </section>
+
       </main>
+
       <StoreFooter settings={settingsMap} />
     </div>
   );

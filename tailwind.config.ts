@@ -9,9 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1a1a1a",
-        accent: "#c0392b",
-        surface: "#f8f9fa",
+        cream: "#F5F3EE",
+        ink: "#111111",
+        charcoal: "#242424",
+        muted: "#6B6B6B",
+        primary: "#111111",
+        accent: "#A67C52",
+        surface: "#FFFFFF",
+      },
+      boxShadow: {
+        soft: "0 12px 40px rgba(0,0,0,0.08)",
+      },
+      letterSpacing: {
+        luxury: "0.22em",
       },
     },
   },
