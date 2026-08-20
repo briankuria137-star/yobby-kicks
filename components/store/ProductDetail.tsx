@@ -52,41 +52,45 @@ export function ProductDetail({
   const currentImage = images[activeImage] || images[0];
 
   return (
-    <div className="luxury-container py-8 md:py-12">
+    <div className="luxury-container py-6 md:py-12">
+      {/* BACK */}
       <Link
         href="/"
-        className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-ink"
+        className="mb-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted transition hover:text-ink md:mb-8"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to collection
       </Link>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        {/* PRODUCT IMAGES */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+        {/* IMAGE GALLERY */}
         <div>
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-black/10 bg-white">
-            {currentImage ? (
-              <img
-                src={currentImage.image_url}
-                alt={product.name}
-                className="h-full w-full object-contain"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-sm text-muted">
-                No image available
-              </div>
-            )}
+          <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+            <div className="aspect-square">
+              {currentImage ? (
+                <img
+                  src={currentImage.image_url}
+                  alt={product.name}
+                  className="h-full w-full object-contain p-2 transition duration-500 md:p-5"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-sm text-muted">
+                  No image available
+                </div>
+              )}
+            </div>
 
             {product.stock_quantity > 0 && (
-              <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-ink shadow-sm">
+              <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 text-[9px] font-bold uppercase tracking-widest text-ink shadow-sm backdrop-blur">
                 <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
                 Available
               </div>
             )}
           </div>
 
+          {/* THUMBNAILS */}
           {images.length > 1 && (
-            <div className="mt-4 grid grid-cols-5 gap-2">
+            <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-5">
               {images.map((image, index) => (
                 <button
                   key={image.id}
@@ -111,20 +115,27 @@ export function ProductDetail({
         </div>
 
         {/* PRODUCT INFORMATION */}
-        <div className="lg:pt-4">
+        <div className="lg:pt-3">
           <p className="eyebrow text-accent">
             {product.category} / {businessName}
           </p>
 
-          <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+          <h1 className="mt-3 text-3xl font-black leading-tight tracking-tight sm:text-4xl">
             {product.name}
           </h1>
 
-          <p className="mt-5 text-2xl font-black">
-            {formatCurrency(product.price)}
-          </p>
+          <div className="mt-5 flex items-end justify-between gap-4 border-b border-black/10 pb-6">
+            <p className="text-3xl font-black tracking-tight">
+              {formatCurrency(product.price)}
+            </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-3">
+            <span className="rounded-full bg-sand/60 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wide">
+              {getConditionLabel(product.condition)}
+            </span>
+          </div>
+
+          {/* PRODUCT FACTS */}
+          <div className="mt-6 grid grid-cols-2 gap-3">
             <div className="rounded-2xl border border-black/10 bg-white p-4">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Size
@@ -162,18 +173,21 @@ export function ProductDetail({
             </div>
           </div>
 
+          {/* DESCRIPTION */}
           {product.description && (
             <div className="mt-8">
               <p className="eyebrow text-accent">About this pair</p>
+
               <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted">
                 {product.description}
               </p>
             </div>
           )}
 
+          {/* CONDITION NOTES */}
           {product.condition_description && (
-            <div className="mt-5 rounded-2xl bg-sand/40 p-5">
-              <p className="text-xs font-bold uppercase tracking-widest">
+            <div className="mt-6 rounded-2xl border border-black/5 bg-sand/40 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest">
                 Condition notes
               </p>
 
@@ -183,6 +197,7 @@ export function ProductDetail({
             </div>
           )}
 
+          {/* WHATSAPP ORDER */}
           {whatsappUrl && product.stock_quantity > 0 && (
             <a
               href={whatsappUrl}
@@ -196,17 +211,18 @@ export function ProductDetail({
             </a>
           )}
 
+          {/* TRUST */}
           <div className="mt-6 grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2 rounded-xl border border-black/10 bg-white p-3">
-              <ShieldCheck className="h-4 w-4 text-accent" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider">
+              <ShieldCheck className="h-4 w-4 shrink-0 text-accent" />
+              <span className="text-[9px] font-semibold uppercase tracking-wider">
                 Quality checked
               </span>
             </div>
 
             <div className="flex items-center gap-2 rounded-xl border border-black/10 bg-white p-3">
-              <Truck className="h-4 w-4 text-accent" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider">
+              <Truck className="h-4 w-4 shrink-0 text-accent" />
+              <span className="text-[9px] font-semibold uppercase tracking-wider">
                 Delivery available
               </span>
             </div>
