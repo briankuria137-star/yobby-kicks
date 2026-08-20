@@ -35,7 +35,7 @@ export function generateWhatsAppMessage(
   price: number
 ): string {
   const message = encodeURIComponent(
-    `Hello MWIHO KICKS!\n\nI'm interested in ordering:\n\nProduct: ${productName}\nID: ${productId}\nSize: ${size}\nPrice: KSh ${price.toLocaleString()}\n\nIs this still available?`
+    `Hello YobbyKicks_KE! 👋\n\nI'm interested in this pair:\n\n👟 Product: ${productName}\n🆔 ID: ${productId}\n📏 Size: ${size}\n💰 Price: KSh ${price.toLocaleString()}\n\nIs it still available? I'd like to place an order.`
   );
   return `https://wa.me/${phone}?text=${message}`;
 }
