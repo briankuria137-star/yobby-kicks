@@ -19,10 +19,10 @@ export async function generateMetadata({
 
   return {
     title: product
-      ? `${product.name} | MWIHO KICKS`
-      : "Product | MWIHO KICKS",
+      ? `${product.name} | YobbyKicks_KE`
+      : "Product | YobbyKicks_KE",
     description:
-      product?.description || "View this quality mtumba shoe at MWIHO KICKS.",
+      product?.description || "View this quality mtumba shoe at YobbyKicks_KE.",
   };
 }
 

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -29,6 +32,8 @@ export function ProductDetail({
     (a, b) => a.display_order - b.display_order
   );
 
+  const [activeImage, setActiveImage] = useState(0);
+
   const whatsapp = settings.get("whatsapp_number");
 
   const whatsappUrl = whatsapp
@@ -44,9 +49,10 @@ export function ProductDetail({
   const businessName =
     settings.get("business_name") || "YobbyKicks_KE";
 
+  const currentImage = images[activeImage] || images[0];
+
   return (
     <div className="luxury-container py-8 md:py-12">
-      {/* BACK */}
       <Link
         href="/"
         className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-ink"
@@ -59,9 +65,9 @@ export function ProductDetail({
         {/* PRODUCT IMAGES */}
         <div>
           <div className="relative aspect-square overflow-hidden rounded-3xl border border-black/10 bg-white">
-            {images[0] ? (
+            {currentImage ? (
               <img
-                src={images[0].image_url}
+                src={currentImage.image_url}
                 alt={product.name}
                 className="h-full w-full object-contain"
               />
@@ -82,12 +88,15 @@ export function ProductDetail({
           {images.length > 1 && (
             <div className="mt-4 grid grid-cols-5 gap-2">
               {images.map((image, index) => (
-                <div
+                <button
                   key={image.id}
-                  className={`aspect-square overflow-hidden rounded-xl border bg-white ${
-                    index === 0
-                      ? "border-accent"
-                      : "border-black/10"
+                  type="button"
+                  onClick={() => setActiveImage(index)}
+                  aria-label={`View ${product.name} image ${index + 1}`}
+                  className={`aspect-square overflow-hidden rounded-xl border bg-white transition ${
+                    index === activeImage
+                      ? "border-accent ring-2 ring-accent/20"
+                      : "border-black/10 hover:border-black/30"
                   }`}
                 >
                   <img
@@ -95,7 +104,7 @@ export function ProductDetail({
                     alt={`${product.name} view ${index + 1}`}
                     className="h-full w-full object-cover"
                   />
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -115,7 +124,6 @@ export function ProductDetail({
             {formatCurrency(product.price)}
           </p>
 
-          {/* PRODUCT SPECS */}
           <div className="mt-8 grid grid-cols-2 gap-3">
             <div className="rounded-2xl border border-black/10 bg-white p-4">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
@@ -139,9 +147,7 @@ export function ProductDetail({
               </p>
               <p className="mt-2 flex items-center gap-1.5 text-sm font-bold">
                 <CheckCircle2 className="h-4 w-4 text-accent" />
-                {product.stock_quantity > 0
-                  ? "Available"
-                  : "Sold"}
+                {product.stock_quantity > 0 ? "Available" : "Sold"}
               </p>
             </div>
 
@@ -156,7 +162,6 @@ export function ProductDetail({
             </div>
           </div>
 
-          {/* DESCRIPTION */}
           {product.description && (
             <div className="mt-8">
               <p className="eyebrow text-accent">About this pair</p>
@@ -178,7 +183,6 @@ export function ProductDetail({
             </div>
           )}
 
-          {/* WHATSAPP CTA */}
           {whatsappUrl && product.stock_quantity > 0 && (
             <a
               href={whatsappUrl}
@@ -192,7 +196,6 @@ export function ProductDetail({
             </a>
           )}
 
-          {/* TRUST */}
           <div className="mt-6 grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2 rounded-xl border border-black/10 bg-white p-3">
               <ShieldCheck className="h-4 w-4 text-accent" />
