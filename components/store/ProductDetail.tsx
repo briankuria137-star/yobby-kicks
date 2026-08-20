@@ -44,17 +44,9 @@ export function ProductDetail({
   const businessName =
     settings.get("business_name") || "YobbyKicks_KE";
 
-  const deliveryInfo =
-    settings.get("delivery_info") ||
-    "Delivery options are available. Contact us to confirm availability and delivery arrangements.";
-
-  const condition = getConditionLabel(product.condition);
-
-  const available = product.stock_quantity > 0;
-
   return (
     <div className="luxury-container py-8 md:py-12">
-      {/* Back navigation */}
+      {/* BACK */}
       <Link
         href="/"
         className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-ink"
@@ -63,37 +55,44 @@ export function ProductDetail({
         Back to collection
       </Link>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
-        {/* IMAGE GALLERY */}
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* PRODUCT IMAGES */}
         <div>
-          <div className="group relative aspect-square overflow-hidden rounded-2xl border border-black/10 bg-white">
+          <div className="relative aspect-square overflow-hidden rounded-3xl border border-black/10 bg-white">
             {images[0] ? (
               <img
                 src={images[0].image_url}
-                alt={`${product.name} - ${businessName}`}
-                className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.02]"
+                alt={product.name}
+                className="h-full w-full object-contain"
               />
             ) : (
-              <div className="flex h-full items-center justify-center text-xs uppercase tracking-widest text-muted">
+              <div className="flex h-full w-full items-center justify-center text-sm text-muted">
                 No image available
               </div>
             )}
 
-            <div className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-white">
-              {condition}
-            </div>
+            {product.stock_quantity > 0 && (
+              <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-ink shadow-sm">
+                <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
+                Available
+              </div>
+            )}
           </div>
 
           {images.length > 1 && (
-            <div className="mt-3 grid grid-cols-5 gap-2">
-              {images.map((image) => (
+            <div className="mt-4 grid grid-cols-5 gap-2">
+              {images.map((image, index) => (
                 <div
                   key={image.id}
-                  className="aspect-square overflow-hidden rounded-xl border border-black/10 bg-white"
+                  className={`aspect-square overflow-hidden rounded-xl border bg-white ${
+                    index === 0
+                      ? "border-accent"
+                      : "border-black/10"
+                  }`}
                 >
                   <img
                     src={image.image_url}
-                    alt={`${product.name} alternate view`}
+                    alt={`${product.name} view ${index + 1}`}
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -104,80 +103,72 @@ export function ProductDetail({
 
         {/* PRODUCT INFORMATION */}
         <div className="lg:pt-4">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
-            {product.category} footwear
+          <p className="eyebrow text-accent">
+            {product.category} / {businessName}
           </p>
 
-          <h1 className="mt-2 text-3xl font-black tracking-tight text-ink sm:text-4xl">
+          <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
             {product.name}
           </h1>
 
-          <p className="mt-4 text-2xl font-black text-ink">
+          <p className="mt-5 text-2xl font-black">
             {formatCurrency(product.price)}
           </p>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-black/10 bg-white p-4">
-              <span className="block text-[9px] font-semibold uppercase tracking-widest text-muted">
+          {/* PRODUCT SPECS */}
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="rounded-2xl border border-black/10 bg-white p-4">
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Size
-              </span>
-              <strong className="mt-1 block text-sm text-ink">
-                {product.size}
-              </strong>
+              </p>
+              <p className="mt-2 text-sm font-bold">{product.size}</p>
             </div>
 
-            <div className="rounded-xl border border-black/10 bg-white p-4">
-              <span className="block text-[9px] font-semibold uppercase tracking-widest text-muted">
+            <div className="rounded-2xl border border-black/10 bg-white p-4">
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Condition
-              </span>
-              <strong className="mt-1 block text-sm text-ink">
-                {condition}
-              </strong>
+              </p>
+              <p className="mt-2 text-sm font-bold">
+                {getConditionLabel(product.condition)}
+              </p>
             </div>
 
-            <div className="rounded-xl border border-black/10 bg-white p-4">
-              <span className="block text-[9px] font-semibold uppercase tracking-widest text-muted">
+            <div className="rounded-2xl border border-black/10 bg-white p-4">
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Availability
-              </span>
-
-              <strong className="mt-1 flex items-center gap-1.5 text-sm text-ink">
+              </p>
+              <p className="mt-2 flex items-center gap-1.5 text-sm font-bold">
                 <CheckCircle2 className="h-4 w-4 text-accent" />
-                {available ? "Available" : "Sold"}
-              </strong>
+                {product.stock_quantity > 0
+                  ? "Available"
+                  : "Sold"}
+              </p>
             </div>
 
-            <div className="rounded-xl border border-black/10 bg-white p-4">
-              <span className="block text-[9px] font-semibold uppercase tracking-widest text-muted">
+            <div className="rounded-2xl border border-black/10 bg-white p-4">
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Stock
-              </span>
-
-              <strong className="mt-1 block text-sm text-ink">
-                {available
-                  ? `${product.stock_quantity} ${
-                      product.stock_quantity === 1 ? "pair" : "pairs"
-                    }`
-                  : "Sold out"}
-              </strong>
+              </p>
+              <p className="mt-2 text-sm font-bold">
+                {product.stock_quantity}{" "}
+                {product.stock_quantity === 1 ? "pair" : "pairs"}
+              </p>
             </div>
           </div>
 
-          {/* Description */}
+          {/* DESCRIPTION */}
           {product.description && (
-            <div className="mt-7 border-t border-black/10 pt-6">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-muted">
-                About this pair
-              </p>
-
+            <div className="mt-8">
+              <p className="eyebrow text-accent">About this pair</p>
               <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted">
                 {product.description}
               </p>
             </div>
           )}
 
-          {/* Condition notes */}
           {product.condition_description && (
-            <div className="mt-5 rounded-xl bg-sand/50 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-ink">
+            <div className="mt-5 rounded-2xl bg-sand/40 p-5">
+              <p className="text-xs font-bold uppercase tracking-widest">
                 Condition notes
               </p>
 
@@ -187,55 +178,42 @@ export function ProductDetail({
             </div>
           )}
 
-          {/* WhatsApp order */}
-          {whatsappUrl && available && (
+          {/* WHATSAPP CTA */}
+          {whatsappUrl && product.stock_quantity > 0 && (
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-soft"
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-widest text-white transition hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-soft"
             >
               <MessageCircle className="h-5 w-5" />
-              Order this pair on WhatsApp
+              Order via WhatsApp
               <ArrowUpRight className="h-4 w-4" />
             </a>
           )}
 
-          {/* Customer reassurance */}
-          <div className="mt-6 grid gap-3 border-t border-black/10 pt-6">
-            <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-
-              <div>
-                <p className="text-xs font-bold text-ink">
-                  Quality-focused selection
-                </p>
-
-                <p className="mt-1 text-xs leading-5 text-muted">
-                  We aim to provide accurate product information so you can
-                  shop with confidence.
-                </p>
-              </div>
+          {/* TRUST */}
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2 rounded-xl border border-black/10 bg-white p-3">
+              <ShieldCheck className="h-4 w-4 text-accent" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider">
+                Quality checked
+              </span>
             </div>
 
-            <div className="flex items-start gap-3">
-              <Truck className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-
-              <div>
-                <p className="text-xs font-bold text-ink">
-                  Delivery information
-                </p>
-
-                <p className="mt-1 text-xs leading-5 text-muted">
-                  {deliveryInfo}
-                </p>
-              </div>
+            <div className="flex items-center gap-2 rounded-xl border border-black/10 bg-white p-3">
+              <Truck className="h-4 w-4 text-accent" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider">
+                Delivery available
+              </span>
             </div>
           </div>
 
-          <p className="mt-6 text-center text-[10px] uppercase tracking-widest text-muted">
-            Availability is confirmed when your order is placed.
-          </p>
+          {settings.get("delivery_info") && (
+            <p className="mt-5 text-center text-xs leading-5 text-muted">
+              {settings.get("delivery_info")}
+            </p>
+          )}
         </div>
       </div>
     </div>
