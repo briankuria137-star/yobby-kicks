@@ -1,3 +1,4 @@
+
 import { createClient } from "@/supabase/server";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { TrendingUp } from "lucide-react";
@@ -44,6 +45,7 @@ export default async function AdminSalesPage() {
                     <th className="text-left px-4 py-3 font-medium text-gray-700">Product</th>
                     <th className="text-left px-4 py-3 font-medium text-gray-700">Size</th>
                     <th className="text-left px-4 py-3 font-medium text-gray-700">Customer</th>
+                    <th className="text-right px-4 py-3 font-medium text-gray-700">Quantity</th>
                     <th className="text-right px-4 py-3 font-medium text-gray-700">Selling</th>
                     <th className="text-right px-4 py-3 font-medium text-gray-700">Cost</th>
                     <th className="text-right px-4 py-3 font-medium text-gray-700">Profit</th>
