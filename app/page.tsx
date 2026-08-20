@@ -214,7 +214,7 @@ export default async function HomePage({
           <SearchFilters />
 
           {products && products.length > 0 ? (
-            <ProductGrid products={products} />
+            <ProductGrid products={products} whatsapp={whatsapp} />
           ) : (
             <div className="rounded-2xl border border-black/10 bg-white px-6 py-20 text-center">
               <Sparkles className="mx-auto h-8 w-8 text-accent" />
