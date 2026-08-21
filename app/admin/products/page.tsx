@@ -135,26 +135,32 @@ export default function AdminProductsPage() {
   const uploadImages = async (productId: string) => {
     const uploaded: { url: string; path: string }[] = [];
     for (const file of selectedFiles) {
-      const path = `${productId}/${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+      const path = `${productId}/${Date.now()}-${safeName}`;
+      const { data, error } = await supabase.storage
         .from("product-images")
-        .upload(path, file);
-      if (error) continue;
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("product-images").getPublicUrl(path);
-      uploaded.push({ url: publicUrl, path });
+        .upload(path, file, { upsert: false });
+      if (error) {
+        throw new Error(`Image upload failed: ${error.message}`);
+      }
+      if (!data) {
+        throw new Error("Image upload returned no data.");
+      }
+      const { data: publicData } = supabase.storage
+        .from("product-images")
+        .getPublicUrl(path);
+      uploaded.push({ url: publicData.publicUrl, path });
     }
     for (const [index, img] of uploaded.entries()) {
-      await supabase.from("product_images").insert({
+      const { error } = await supabase.from("product_images").insert({
         product_id: productId,
         image_url: img.url,
         storage_path: img.path,
         display_order: index,
       });
+      if (error) throw new Error(`Image record failed: ${error.message}`);
     }
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setUploading(true);
