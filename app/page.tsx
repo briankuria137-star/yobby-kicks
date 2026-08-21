@@ -115,26 +115,52 @@ export default async function HomePage({
               </div>
 
               <div className="hidden md:flex md:justify-end">
-                <div className="relative h-72 w-72 rounded-full border border-white/10">
-                  <div className="absolute inset-8 rounded-full border border-white/10" />
-                  <div className="absolute inset-16 rounded-full border border-accent/30" />
-
-                  <div className="absolute inset-0 flex items-center justify-center text-center">
-                    <div>
+                {products?.[0]?.product_images?.[0]?.image_url ? (
+                  <div className="relative w-full max-w-md">
+                    <div className="absolute -inset-6 rounded-[2rem] bg-white/[0.03] blur-2xl" />
+                    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl">
+                      <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-white">
+                        <img
+                          src={products[0].product_images[0].image_url}
+                          alt={products[0].name}
+                          className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                        />
+                        <div className="absolute left-4 top-4 rounded-full bg-ink/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur">
+                          Featured pair
+                        </div>
+                      </div>
+                      <div className="flex items-end justify-between px-2 pb-2 pt-5">
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+                            Available now
+                          </p>
+                          <p className="mt-1 text-lg font-bold text-white">
+                            {products[0].name}
+                          </p>
+                        </div>
+                        <p className="text-lg font-black text-accent">
+                          KSh {Number(products[0].price).toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex h-80 w-80 items-center justify-center rounded-[2rem] border border-white/10 bg-white/[0.04]">
+                    <div className="text-center">
                       <Sparkles className="mx-auto mb-3 h-7 w-7 text-accent" />
                       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
                         YobbyKicks
                       </p>
-                      <p className="mt-2 text-2xl font-black">
+                      <p className="mt-2 text-2xl font-black text-white">
                         KE
                       </p>
                     </div>
                   </div>
+                )}
+              </div>
                 </div>
               </div>
 
-            </div>
-          </div>
         </section>
 
         {/* TRUST BAR */}
