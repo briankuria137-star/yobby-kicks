@@ -35,6 +35,10 @@ export function ProductGrid({
             )
           : null;
 
+        const isNew =
+          Date.now() - new Date(product.created_at).getTime() <
+          7 * 24 * 60 * 60 * 1000;
+
         return (
           <div
             key={product.id}
@@ -61,6 +65,12 @@ export function ProductGrid({
                 )}
 
                 {/* AVAILABLE */}
+
+                {isNew && (
+                  <div className="absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-ink shadow-sm">
+                    New
+                  </div>
+                )}
                 {product.stock_quantity > 0 && (
                   <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-ink shadow-sm">
                     <CheckCircle2 className="h-3 w-3 text-accent" />
