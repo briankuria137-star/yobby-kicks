@@ -85,7 +85,7 @@ export function ProductGrid({
               </div>
 
               {/* DETAILS */}
-              <div className="flex flex-col p-4">
+              <div className="flex flex-col p-3 md:p-4">
                 <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-accent">
                   {product.category}
                 </p>
