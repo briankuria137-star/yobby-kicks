@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  X,
   CheckCircle2,
   MessageCircle,
   ShieldCheck,
@@ -34,6 +35,7 @@ export function ProductDetail({
   );
 
   const [activeImage, setActiveImage] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
@@ -89,7 +91,7 @@ export function ProductDetail({
         {/* IMAGE GALLERY */}
         <div>
           <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
-            <div className="aspect-square touch-pan-y" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            <div className="aspect-square touch-pan-y cursor-zoom-in" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => currentImage && setIsFullscreen(true)}>
               {currentImage ? (
                 <img
                   src={currentImage.image_url}
@@ -284,6 +286,57 @@ export function ProductDetail({
           )}
         </div>
       </div>
+      {isFullscreen && currentImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4" onClick={() => setIsFullscreen(false)}>
+          <button
+            type="button"
+            onClick={() => setIsFullscreen(false)}
+            aria-label="Close fullscreen image"
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur hover:bg-white/20"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <img
+            src={currentImage.image_url}
+            alt={product.name}
+            className="max-h-[90vh] max-w-full object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setActiveImage((activeImage - 1 + images.length) % images.length);
+                }}
+                aria-label="Previous fullscreen image"
+                className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur hover:bg-white/20"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setActiveImage((activeImage + 1) % images.length);
+                }}
+                aria-label="Next fullscreen image"
+                className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur hover:bg-white/20"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
+
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                {activeImage + 1} / {images.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
