@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -36,6 +36,13 @@ export function ProductDetail({
 
   const [activeImage, setActiveImage] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isFullscreen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isFullscreen]);
   const touchStartX = useRef<number | null>(null);
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
