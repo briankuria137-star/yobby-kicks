@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
   CheckCircle2,
   MessageCircle,
@@ -78,6 +79,32 @@ export function ProductDetail({
                   No image available
                 </div>
               )}
+
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setActiveImage((activeImage - 1 + images.length) % images.length)}
+                  aria-label="Previous image"
+                  className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-sm"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveImage((activeImage + 1) % images.length)}
+                  aria-label="Next image"
+                  className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-sm"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+
+                <div className="absolute bottom-3 right-3 rounded-full bg-ink/80 px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-white">
+                  {activeImage + 1} / {images.length}
+                </div>
+              </>
+            )}
             </div>
 
             {product.stock_quantity > 0 && (
