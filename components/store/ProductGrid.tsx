@@ -94,7 +94,7 @@ export function ProductGrid({
                   {product.name}
                 </h3>
 
-                <div className="mt-3 flex items-center justify-between gap-2 border-t border-black/5 pt-3">
+                <div className="mt-2.5 flex items-center justify-between gap-2 border-t border-black/5 pt-2.5">
                   <p className="text-[10px] font-medium uppercase tracking-wide text-muted">
                     Size {product.size}
                   </p>
