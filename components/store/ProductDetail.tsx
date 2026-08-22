@@ -35,7 +35,12 @@ export function ProductDetail({
   );
 
   const [activeImage, setActiveImage] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [activeImage]);
 
   useEffect(() => {
     document.body.style.overflow = isFullscreen ? "hidden" : "";
@@ -100,11 +105,19 @@ export function ProductDetail({
           <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
             <div className="aspect-square touch-pan-y cursor-zoom-in" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => currentImage && setIsFullscreen(true)}>
               {currentImage ? (
-                <img
-                  src={currentImage.image_url}
-                  alt={product.name}
-                  className="h-full w-full object-contain p-2 transition duration-500 md:p-5"
-                />
+                <>
+                  {!imageLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white">
+                      <div className="h-8 w-8 animate-spin rounded-full border-2 border-black/10 border-t-accent" />
+                    </div>
+                  )}
+                  <img
+                    src={currentImage.image_url}
+                    alt={product.name}
+                    onLoad={() => setImageLoaded(true)}
+                    className={`h-full w-full object-contain p-2 transition duration-500 md:p-5 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                  />
+                </>
               ) : (
                 <div className="flex h-full w-full items-center justify-center text-sm text-muted">
                   No image available
