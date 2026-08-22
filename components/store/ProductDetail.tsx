@@ -287,7 +287,7 @@ export function ProductDetail({
         </div>
       </div>
       {isFullscreen && currentImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4" onClick={() => setIsFullscreen(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 touch-pan-y" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => setIsFullscreen(false)}>
           <button
             type="button"
             onClick={() => setIsFullscreen(false)}
