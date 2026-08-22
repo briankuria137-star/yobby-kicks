@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -34,6 +34,28 @@ export function ProductDetail({
   );
 
   const [activeImage, setActiveImage] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || images.length <= 1) return;
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const distance = touchEndX - touchStartX.current;
+
+    if (Math.abs(distance) > 50) {
+      setActiveImage((current) =>
+        distance < 0
+          ? (current + 1) % images.length
+          : (current - 1 + images.length) % images.length
+      );
+    }
+
+    touchStartX.current = null;
+  };
 
   const whatsapp = settings.get("whatsapp_number");
 
@@ -67,7 +89,7 @@ export function ProductDetail({
         {/* IMAGE GALLERY */}
         <div>
           <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
-            <div className="aspect-square">
+            <div className="aspect-square touch-pan-y" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
               {currentImage ? (
                 <img
                   src={currentImage.image_url}
