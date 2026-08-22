@@ -58,7 +58,7 @@ export function SearchFilters() {
         </div>
 
         {/* CONTROLS */}
-        <div className="flex gap-2">
+        <div className="grid grid-cols-[1fr_auto] gap-2 sm:flex">
           <div className="relative flex-1 sm:flex-none">
             <SlidersHorizontal className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
 
