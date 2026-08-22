@@ -50,7 +50,7 @@ export function ProductGrid({
               className="block"
             >
               {/* IMAGE */}
-              <div className="relative aspect-square overflow-hidden bg-gray-100">
+              <div className="relative aspect-square overflow-hidden bg-gray-100 group-hover:bg-gray-50">
                 {image ? (
                   <img
                     src={image.image_url}
