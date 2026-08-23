@@ -20,7 +20,7 @@ export function ProductGrid({
 }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-      {products.map((product) => {
+      {products.map((product, index) => {
         const image = [...(product.product_images || [])].sort(
           (a, b) => a.display_order - b.display_order
         )[0];
@@ -42,7 +42,10 @@ export function ProductGrid({
         return (
           <article
             key={product.id}
-            className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-violet-500/10"
+            className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface/90 shadow-[0_12px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
+            style={{
+              animationDelay: `${Math.min(index * 60, 420)}ms`,
+            }}
           >
             <Link href={`/product/${product.id}`} className="block">
               <div className="relative aspect-square overflow-hidden bg-black/30">
@@ -50,7 +53,7 @@ export function ProductGrid({
                   <img
                     src={image.image_url}
                     alt={product.name}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     loading="lazy"
                   />
                 ) : (
@@ -59,52 +62,73 @@ export function ProductGrid({
                   </div>
                 )}
 
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70" />
 
                 {isNew && (
-                  <div className="absolute right-3 top-3 rounded-full bg-pink-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-white shadow-lg shadow-pink-500/20">
-                    New
+                  <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-pink-500 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.18em] text-white shadow-lg shadow-pink-500/20">
+                    New arrival
                   </div>
                 )}
 
                 {product.stock_quantity > 0 && (
-                  <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-lime-400/30 bg-black/75 px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-white backdrop-blur-md">
+                  <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-lime-400/20 bg-black/70 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.16em] text-white backdrop-blur-xl">
                     <CheckCircle2 className="h-3 w-3 text-lime-300" />
                     Available
                   </div>
                 )}
 
-                <div className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
+                <div className="absolute bottom-3 right-3 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </div>
 
               <div className="flex flex-col p-4">
-                <p className="mb-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-accent">
-                  {product.category}
-                </p>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
+                    {product.category}
+                  </p>
 
-                <h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-black leading-5 text-ink">
+                  <span className="yk-number">
+                    #{String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <h3 className="mt-2 line-clamp-2 min-h-[2.5rem] text-sm font-black leading-5 text-ink transition-colors group-hover:text-accent">
                   {product.name}
                 </h3>
 
-                <div className="mt-3 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
-                  <p className="text-[10px] font-bold uppercase tracking-wide text-muted">
-                    Size {product.size}
-                  </p>
+                <div className="mt-4 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
+                  <div>
+                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
+                      Size
+                    </p>
+                    <p className="mt-0.5 text-[10px] font-black text-ink">
+                      {product.size}
+                    </p>
+                  </div>
 
-                  <p className="truncate text-[10px] font-bold text-muted">
-                    {getConditionLabel(product.condition)}
-                  </p>
+                  <div className="text-right">
+                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
+                      Condition
+                    </p>
+                    <p className="mt-0.5 truncate text-[10px] font-black text-ink">
+                      {getConditionLabel(product.condition)}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="mt-4 flex items-end justify-between gap-2">
-                  <p className="text-base font-black tracking-tight text-ink">
-                    {formatCurrency(product.price)}
-                  </p>
+                <div className="mt-4 flex items-end justify-between gap-3">
+                  <div>
+                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
+                      Price
+                    </p>
+                    <p className="mt-0.5 text-base font-black tracking-tight text-ink">
+                      {formatCurrency(product.price)}
+                    </p>
+                  </div>
 
-                  <span className="flex items-center gap-1 text-[9px] font-black uppercase tracking-widest text-muted transition group-hover:text-accent">
-                    View
+                  <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-accent">
+                    Details
                     <ArrowUpRight className="h-3 w-3" />
                   </span>
                 </div>
@@ -117,7 +141,7 @@ export function ProductGrid({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-[9px] font-black uppercase tracking-widest text-white shadow-lg shadow-violet-500/10 transition hover:-translate-y-0.5 hover:bg-violet-400"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-accent/30 bg-accent px-4 py-3 text-[8px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-violet-500/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-violet-500/20"
                 >
                   <MessageCircle className="h-3.5 w-3.5" />
                   Order on WhatsApp
