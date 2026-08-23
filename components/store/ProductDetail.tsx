@@ -104,6 +104,11 @@ export function ProductDetail({
         <div>
           <div className="group relative overflow-hidden rounded-[2.75rem] border border-white/10 bg-surface/90 shadow-[0_40px_120px_rgba(0,0,0,0.42)] backdrop-blur-xl transition-all duration-700 hover:border-white/20 hover:shadow-[0_52px_145px_rgba(0,0,0,0.52)]">
             <div className="relative aspect-square touch-pan-y cursor-zoom-in bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08),transparent_60%)]" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => currentImage && setIsFullscreen(true)}>
+              {currentImage && (
+                <div className="pointer-events-none absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full border border-white/10 bg-black/65 px-3.5 py-2 text-[9px] font-black uppercase tracking-[0.16em] text-white/90 opacity-90 shadow-[0_10px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:bottom-5">
+                  Tap to view
+                </div>
+              )}
               {currentImage ? (
                 <>
                   {!imageLoaded && (
@@ -161,14 +166,14 @@ export function ProductDetail({
 
           {/* THUMBNAILS */}
           {images.length > 1 && (
-            <div className="mt-5 grid grid-cols-4 gap-3 sm:grid-cols-5">
+            <div className="mt-5 flex gap-3 overflow-x-auto pb-1 scrollbar-hide sm:grid sm:grid-cols-5 sm:overflow-visible sm:pb-0">
               {images.map((image, index) => (
                 <button
                   key={image.id}
                   type="button"
                   onClick={() => setActiveImage(index)}
                   aria-label={`View ${product.name} image ${index + 1}`}
-                  className={`aspect-square overflow-hidden rounded-[1.25rem] border bg-surface shadow-sm transition-all duration-300 ${
+                  className={`aspect-square w-[76px] shrink-0 overflow-hidden rounded-[1.25rem] border bg-surface shadow-sm transition-all duration-300 sm:w-auto ${
                     index === activeImage
                       ? "border-accent ring-2 ring-accent/20 shadow-[0_8px_25px_rgba(139,92,246,0.16)]"
                       : "border-white/10 hover:border-accent/50"
