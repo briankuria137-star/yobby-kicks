@@ -89,7 +89,7 @@ export function ProductDetail({
   const currentImage = images[activeImage] || images[0];
 
   return (
-    <div className="luxury-container py-6 md:py-12">
+    <div className="luxury-container relative py-6 md:py-12">
       {/* BACK */}
       <Link
         href="/"
@@ -99,11 +99,11 @@ export function ProductDetail({
         Back to collection
       </Link>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
         {/* IMAGE GALLERY */}
         <div>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-lg">
-            <div className="aspect-square touch-pan-y cursor-zoom-in" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => currentImage && setIsFullscreen(true)}>
+          <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-surface shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+            <div className="relative aspect-square touch-pan-y cursor-zoom-in" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => currentImage && setIsFullscreen(true)}>
               {currentImage ? (
                 <>
                   {!imageLoaded && (
@@ -115,7 +115,7 @@ export function ProductDetail({
                     src={currentImage.image_url}
                     alt={product.name}
                     onLoad={() => setImageLoaded(true)}
-                    className={`h-full w-full object-contain p-2 transition duration-500 md:p-5 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                    className={`h-full w-full object-contain p-2 transition duration-700 md:p-6 ${imageLoaded ? "scale-100 opacity-100" : "scale-[1.03] opacity-0"}`}
                   />
                 </>
               ) : (
@@ -186,17 +186,17 @@ export function ProductDetail({
         </div>
 
         {/* PRODUCT INFORMATION */}
-        <div className="lg:pt-3">
+        <div className="animate-cinematic lg:sticky lg:top-28 lg:pt-3">
           <p className="eyebrow text-accent">
             {product.category} / {businessName}
           </p>
 
-          <h1 className="mt-3 text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+          <h1 className="mt-3 text-4xl font-black leading-[0.95] tracking-[-0.04em] sm:text-5xl md:text-6xl">
             {product.name}
           </h1>
 
           <div className="mt-5 flex items-end justify-between gap-4 border-b border-white/10 pb-6">
-            <p className="text-3xl font-black tracking-tight">
+            <p className="text-4xl font-black tracking-[-0.04em] text-accent sm:text-5xl">
               {formatCurrency(product.price)}
             </p>
 
