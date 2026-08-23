@@ -206,8 +206,8 @@ export function ProductDetail({
           </div>
 
           {/* PRODUCT FACTS */}
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface/90 p-4 shadow-[0_14px_40px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 hover:bg-surface">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface/90 p-4 sm:p-4.5 shadow-[0_14px_40px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 hover:bg-surface">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Size
               </p>
@@ -216,7 +216,7 @@ export function ProductDetail({
               </p>
             </div>
 
-            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/15">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 sm:p-4.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/15">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Condition
               </p>
@@ -225,7 +225,7 @@ export function ProductDetail({
               </p>
             </div>
 
-            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 shadow-sm">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 sm:p-4.5 shadow-sm">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Availability
               </p>
