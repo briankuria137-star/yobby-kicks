@@ -42,7 +42,7 @@ export function ProductGrid({
         return (
           <article
             key={product.id}
-            className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface/90 shadow-[0_12px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
+            className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-surface/90 shadow-[0_18px_70px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-700 ease-out hover:-translate-y-2 hover:border-accent/40 hover:shadow-[0_30px_90px_rgba(0,0,0,0.3)]"
             style={{
               animationDelay: `${Math.min(index * 60, 420)}ms`,
             }}
@@ -53,7 +53,7 @@ export function ProductGrid({
                   <img
                     src={image.image_url}
                     alt={product.name}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                     loading="lazy"
                   />
                 ) : (
@@ -62,7 +62,7 @@ export function ProductGrid({
                   </div>
                 )}
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
 
                 {isNew && (
                   <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-pink-500 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.18em] text-white shadow-lg shadow-pink-500/20">
@@ -82,7 +82,7 @@ export function ProductGrid({
                 </div>
               </div>
 
-              <div className="flex flex-col p-4">
+              <div className="relative flex flex-col p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
                     {product.category}
@@ -122,7 +122,7 @@ export function ProductGrid({
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Price
                     </p>
-                    <p className="mt-0.5 text-base font-black tracking-tight text-ink">
+                    <p className="mt-0.5 text-lg font-black tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-accent">
                       {formatCurrency(product.price)}
                     </p>
                   </div>
