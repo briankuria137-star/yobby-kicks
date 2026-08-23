@@ -5,10 +5,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: #09090B;
   }
 
   body {
     @apply bg-cream text-ink antialiased;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(168,85,247,0.08), transparent 28rem),
+      radial-gradient(circle at 85% 35%, rgba(236,72,153,0.05), transparent 26rem),
+      #09090B;
   }
 
   ::selection {
@@ -32,6 +37,74 @@
   .yk-glass {
     @apply border border-white/10 bg-white/[0.045] backdrop-blur-xl;
   }
+
+  .yk-panel {
+    @apply border border-white/10 bg-surface/90 backdrop-blur-xl;
+    box-shadow:
+      0 20px 70px rgba(0,0,0,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.035);
+  }
+
+  .yk-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .yk-vignette {
+    position: relative;
+  }
+
+  .yk-vignette::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.28) 100%);
+  }
+
+  .yk-scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .yk-scanline::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255,255,255,0.025) 50%,
+      transparent 100%
+    );
+    background-size: 100% 8px;
+    opacity: 0.25;
+    mix-blend-mode: screen;
+  }
+
+  .yk-status {
+    @apply inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.18em] text-muted;
+  }
+
+  .yk-status::before {
+    content: "";
+    @apply h-1.5 w-1.5 rounded-full bg-lime;
+    box-shadow: 0 0 12px rgba(163,230,53,0.65);
+  }
+
+  .yk-glow {
+    box-shadow:
+      0 0 0 1px rgba(168,85,247,0.08),
+      0 20px 80px rgba(168,85,247,0.08);
+  }
+
+  .yk-number {
+    @apply font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted;
+  }
 }
 
 @layer utilities {
@@ -46,6 +119,18 @@
   .animate-fade-up-delay {
     animation: fadeUp 0.7s 0.15s ease-out both;
   }
+
+  .animate-cinematic {
+    animation: cinematicIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-cinematic-delay {
+    animation: cinematicIn 0.9s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 3s ease-in-out infinite;
+  }
 }
 
 @keyframes fadeUp {
@@ -57,5 +142,42 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes cinematicIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
