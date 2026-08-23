@@ -314,20 +314,20 @@ export default async function HomePage({
         </section>
 
         {/* CUSTOMER SERVICE CTA */}
-        <section className="border-y border-white/10 bg-surface/95 shadow-[0_-10px_40px_rgba(0,0,0,0.04)]">
-          <div className="luxury-container py-14">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <section className="relative isolate overflow-hidden border-y border-white/10 bg-[#09090B] text-white shadow-[0_-20px_80px_rgba(0,0,0,0.16)]">
+          <div className="luxury-container relative py-16 md:py-20">
+            <div className="relative flex flex-col gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] px-6 py-8 shadow-[0_25px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:px-8 md:flex-row md:items-center md:justify-between md:px-10 md:py-10">
 
-              <div className="max-w-xl">
+              <div className="relative z-10 max-w-2xl">
                 <p className="eyebrow text-accent">
                   Need help choosing?
                 </p>
 
-                <h2 className="mt-2 text-2xl font-black">
+                <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] sm:text-4xl">
                   We are happy to help.
                 </h2>
 
-                <p className="mt-2 text-sm leading-6 text-muted">
+                <p className="mt-3 max-w-xl text-sm leading-7 text-white/50 sm:text-base">
                   Ask about sizing, condition, availability, pricing or
                   delivery before placing your order.
                 </p>
@@ -338,7 +338,7 @@ export default async function HomePage({
                   href={`https://wa.me/${whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_40px_rgba(139,92,246,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(139,92,246,0.32)] active:translate-y-0"
+                  className="group relative z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_16px_45px_rgba(139,92,246,0.26)] transition-all duration-300 hover:-translate-y-1 hover:bg-violet-400 hover:shadow-[0_24px_60px_rgba(139,92,246,0.38)] active:translate-y-0"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Chat with us
