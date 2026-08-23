@@ -4,6 +4,7 @@ import { StoreHeader } from "@/components/store/StoreHeader";
 import { StoreFooter } from "@/components/store/StoreFooter";
 import { SearchFilters } from "@/components/store/SearchFilters";
 import {
+  ArrowUpRight,
   ShieldCheck,
   MessageCircle,
   Truck,
@@ -72,32 +73,43 @@ export default async function HomePage({
       <main className="flex-1">
 
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[#09090B] text-[#F4F4F5]">
-          <div className="luxury-container">
-            <div className="grid min-h-[460px] items-center py-16 md:grid-cols-2 md:py-20">
+        <section className="relative isolate overflow-hidden bg-[#09090B] text-[#F4F4F5]">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
+            <div className="absolute right-[-8rem] top-1/3 h-[30rem] w-[30rem] rounded-full bg-fuchsia-500/[0.06] blur-3xl" />
+            <div className="absolute inset-0 yk-grid opacity-40" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.5)_100%)]" />
+          </div>
 
-              <div className="max-w-xl animate-fade-up">
-                <p className="eyebrow mb-5 text-accent">
-                  {location}
-                </p>
+          <div className="luxury-container relative">
+            <div className="grid min-h-[560px] items-center gap-12 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:min-h-[620px]">
 
-                <h1 className="text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                  Step into
-                  <span className="block text-white">
-                    something better.
+              <div className="max-w-2xl animate-cinematic">
+                <div className="yk-status mb-6">{location}</div>
+
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="h-px w-10 bg-accent" />
+                  <span className="text-[9px] font-black uppercase tracking-[0.28em] text-white/60">
+                    Curated footwear
                   </span>
+                </div>
+
+                <h1 className="text-balance text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+                  Step into
+                  <span className="block bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
+                    something
+                  </span>
+                  <span className="block text-accent">better.</span>
                 </h1>
 
-                <p className="mt-6 max-w-md text-sm leading-7 text-white/90 sm:text-base">
+                <p className="mt-7 max-w-lg text-sm leading-7 text-white/60 sm:text-base">
                   {description}
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="#shop"
-                    className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-ink transition hover:-translate-y-0.5 hover:bg-accent/80"
-                  >
+                <div className="mt-9 flex flex-wrap gap-3">
+                  <a href="#shop" className="luxury-button group">
                     Shop collection
+                    <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
                   {whatsapp && (
@@ -105,64 +117,100 @@ export default async function HomePage({
                       href={`https://wa.me/${whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08]"
                     >
                       <MessageCircle className="h-4 w-4" />
                       WhatsApp us
                     </a>
                   )}
                 </div>
+
+                <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 pt-5">
+                  <div>
+                    <p className="yk-number">01 / Selection</p>
+                    <p className="mt-1 text-[10px] text-white/50">Carefully selected pairs</p>
+                  </div>
+
+                  <div className="hidden h-7 w-px bg-white/10 sm:block" />
+
+                  <div>
+                    <p className="yk-number">02 / Ordering</p>
+                    <p className="mt-1 text-[10px] text-white/50">Simple WhatsApp ordering</p>
+                  </div>
+
+                  <div className="hidden h-7 w-px bg-white/10 sm:block" />
+
+                  <div>
+                    <p className="yk-number">03 / Delivery</p>
+                    <p className="mt-1 text-[10px] text-white/50">Ask about available options</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="hidden md:flex md:justify-end">
+              <div className="relative hidden md:block animate-cinematic-delay">
                 {products?.[0]?.product_images?.[0]?.image_url ? (
-                  <div className="relative w-full max-w-md">
-                    <div className="absolute -inset-6 rounded-[2rem] bg-violet-500/[0.04] blur-2xl" />
-                    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-4 shadow-2xl">
-                      <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-white">
-                        <img
-                          src={products[0].product_images[0].image_url}
-                          alt={products[0].name}
-                          className="h-full w-full object-cover transition duration-700 hover:scale-105"
-                        />
-                        <div className="absolute left-4 top-4 rounded-full bg-ink/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur">
-                          Featured pair
-                        </div>
-                      </div>
-                      <div className="flex items-end justify-between px-2 pb-2 pt-5">
-                        <div>
-                          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">
-                            Available now
-                          </p>
-                          <p className="mt-1 text-lg font-bold text-white">
-                            {products[0].name}
-                          </p>
-                        </div>
-                        <p className="text-lg font-black text-accent">
-                          KSh {Number(products[0].price).toLocaleString()}
+                  <div className="relative mx-auto w-full max-w-[500px]">
+                    <div className="absolute -inset-8 rounded-[3rem] bg-violet-500/[0.07] blur-3xl" />
+
+                    <div className="relative">
+                      <div className="absolute -right-5 -top-5 z-10 rounded-full border border-white/10 bg-black/70 px-4 py-2 backdrop-blur-xl">
+                        <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
+                          Featured / 001
                         </p>
+                      </div>
+
+                      <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+                        <div className="relative aspect-[0.92] overflow-hidden rounded-[2rem] bg-white">
+                          <img
+                            src={products[0].product_images[0].image_url}
+                            alt={products[0].name}
+                            className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                          />
+
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                            <div>
+                              <p className="text-[8px] font-black uppercase tracking-[0.22em] text-white/60">
+                                Available now
+                              </p>
+                              <p className="mt-1 text-lg font-black text-white">
+                                {products[0].name}
+                              </p>
+                            </div>
+
+                            <p className="shrink-0 text-lg font-black text-accent">
+                              KSh {Number(products[0].price).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between px-3 pb-2 pt-4">
+                          <p className="yk-number">YobbyKicks_KE</p>
+                          <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-white/50">
+                            Explore
+                            <ArrowUpRight className="h-3 w-3" />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex h-80 w-80 items-center justify-center rounded-[2rem] border border-white/10 bg-white/[0.06]">
+                  <div className="mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-[2.5rem] border border-white/10 bg-white/[0.04]">
                     <div className="text-center">
-                      <Sparkles className="mx-auto mb-3 h-7 w-7 text-accent" />
-                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/85">
+                      <Sparkles className="mx-auto mb-4 h-8 w-8 text-accent" />
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">
                         YobbyKicks
                       </p>
-                      <p className="mt-2 text-2xl font-black text-white">
-                        KE
-                      </p>
+                      <p className="mt-2 text-4xl font-black text-white">KE</p>
                     </div>
                   </div>
                 )}
               </div>
-                </div>
-              </div>
 
+            </div>
+          </div>
         </section>
-
         {/* TRUST BAR */}
         <section className="border-b border-white/10 bg-surface">
           <div className="luxury-container">
