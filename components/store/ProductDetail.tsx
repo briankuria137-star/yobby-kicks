@@ -207,37 +207,41 @@ export function ProductDetail({
 
           {/* PRODUCT FACTS */}
           <div className="mt-8 grid grid-cols-2 gap-3">
-            <div className="group rounded-[1.25rem] border border-white/10 bg-surface/90 p-4.5 shadow-[0_14px_40px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 hover:bg-surface">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface/90 p-4 shadow-[0_14px_40px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 hover:bg-surface">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Size
               </p>
-              <p className="mt-2 text-sm font-bold">{product.size}</p>
+              <p className="mt-2 min-w-0 break-words text-sm font-bold leading-5">
+                {product.size}
+              </p>
             </div>
 
-            <div className="rounded-[1.25rem] border border-white/10 bg-surface p-4.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/15">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/15">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Condition
               </p>
-              <p className="mt-2 text-sm font-bold">
+              <p className="mt-2 min-w-0 break-words text-sm font-bold leading-5">
                 {getConditionLabel(product.condition)}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-surface p-4">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 shadow-sm">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Availability
               </p>
-              <p className="mt-2 flex items-center gap-1.5 text-sm font-bold">
-                <CheckCircle2 className="h-4 w-4 text-accent" />
-                {product.stock_quantity > 0 ? "Available" : "Sold"}
+              <p className="mt-2 flex min-w-0 items-center gap-1.5 text-sm font-bold leading-5">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
+                <span className="min-w-0 break-words">
+                  {product.stock_quantity > 0 ? "Available" : "Sold"}
+                </span>
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-surface p-4">
+            <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-surface p-4 shadow-sm">
               <p className="text-[9px] font-semibold uppercase tracking-widest text-muted">
                 Stock
               </p>
-              <p className="mt-2 text-sm font-bold">
+              <p className="mt-2 min-w-0 break-words text-sm font-bold leading-5">
                 {product.stock_quantity}{" "}
                 {product.stock_quantity === 1 ? "pair" : "pairs"}
               </p>
@@ -283,7 +287,7 @@ export function ProductDetail({
           )}
 
           {/* TRUST */}
-          <div className="mt-7 grid grid-cols-2 gap-3">
+          <div className="mt-8 grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2 rounded-[1.25rem] border border-white/10 bg-surface/90 p-4 shadow-[0_12px_35px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/15">
               <ShieldCheck className="h-4 w-4 shrink-0 text-accent" />
               <span className="text-[9px] font-semibold uppercase tracking-wider">
