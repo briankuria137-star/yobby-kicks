@@ -313,7 +313,7 @@ export default async function AdminDashboard() {
             Command Center
           </h1>
 
-          <p className="mt-1 text-sm text-white/75">
+          <p className="mt-1 text-sm text-white/45">
             Your business, at a glance.
           </p>
         </div>
@@ -345,7 +345,7 @@ export default async function AdminDashboard() {
         <div className="relative">
           <div className="mb-5 flex items-center justify-between">
             <div>
-              <p className="text-[9px] font-black uppercase tracking-[0.25em] text-white/70">
+              <p className="text-[9px] font-black uppercase tracking-[0.25em] text-white/40">
                 YK// BUSINESS PULSE
               </p>
               <p className="mt-1 text-sm font-semibold">
@@ -365,7 +365,7 @@ export default async function AdminDashboard() {
 
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/70">
+              <p className="text-[10px] uppercase tracking-wider text-white/40">
                 Revenue
               </p>
               <p className="mt-1 text-2xl font-black tracking-tight">
@@ -384,18 +384,18 @@ export default async function AdminDashboard() {
                 >
                   {Math.abs(todayChange).toFixed(1)}%
                 </span>
-                <span className="text-white/60">vs yesterday</span>
+                <span className="text-white/30">vs yesterday</span>
               </div>
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/70">
+              <p className="text-[10px] uppercase tracking-wider text-white/40">
                 Profit
               </p>
               <p className="mt-1 text-2xl font-black tracking-tight text-lime-300">
                 {formatCurrency(todayProfit)}
               </p>
-              <p className="mt-1 text-[10px] text-white/65">
+              <p className="mt-1 text-[10px] text-white/35">
                 {formatPercent(
                   todayRevenue > 0
                     ? (todayProfit / todayRevenue) * 100
@@ -406,25 +406,25 @@ export default async function AdminDashboard() {
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/70">
+              <p className="text-[10px] uppercase tracking-wider text-white/40">
                 Orders
               </p>
               <p className="mt-1 text-2xl font-black tracking-tight">
                 {pendingOrders}
               </p>
-              <p className="mt-1 text-[10px] text-white/65">
+              <p className="mt-1 text-[10px] text-white/35">
                 awaiting action
               </p>
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/70">
+              <p className="text-[10px] uppercase tracking-wider text-white/40">
                 Stock Capital
               </p>
               <p className="mt-1 text-2xl font-black tracking-tight">
                 {formatCurrency(stockValue)}
               </p>
-              <p className="mt-1 text-[10px] text-white/65">
+              <p className="mt-1 text-[10px] text-white/35">
                 {availableCount} available products
               </p>
             </div>
@@ -469,7 +469,7 @@ export default async function AdminDashboard() {
             className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-white/20 hover:bg-white/[0.055]"
           >
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/65">
+              <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/35">
                 {label}
               </span>
               <Icon className={`h-4 w-4 ${accent}`} />
@@ -477,7 +477,7 @@ export default async function AdminDashboard() {
             <p className="text-lg font-black tracking-tight sm:text-xl">
               {value}
             </p>
-            <p className="mt-1 text-[10px] text-white/65">{sub}</p>
+            <p className="mt-1 text-[10px] text-white/35">{sub}</p>
           </div>
         ))}
       </div>
@@ -494,12 +494,12 @@ export default async function AdminDashboard() {
               <h2 className="mt-1 text-lg font-black">Performance snapshot</h2>
             </div>
 
-            <Activity className="h-5 w-5 text-white/60" />
+            <Activity className="h-5 w-5 text-white/30" />
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
-              <p className="text-[10px] uppercase tracking-wider text-white/65">
+              <p className="text-[10px] uppercase tracking-wider text-white/35">
                 Weekly Revenue
               </p>
               <p className="mt-2 text-2xl font-black">
@@ -534,13 +534,13 @@ export default async function AdminDashboard() {
                 </span>
               </div>
 
-              <p className="mt-2 text-[10px] text-white/60">
+              <p className="mt-2 text-[10px] text-white/30">
                 compared with previous week
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
-              <p className="text-[10px] uppercase tracking-wider text-white/65">
+              <p className="text-[10px] uppercase tracking-wider text-white/35">
                 Gross Margin
               </p>
               <p className="mt-2 text-2xl font-black text-lime-300">
@@ -556,7 +556,7 @@ export default async function AdminDashboard() {
                 />
               </div>
 
-              <p className="mt-2 text-[10px] text-white/60">
+              <p className="mt-2 text-[10px] text-white/30">
                 {formatCurrency(totalProfit)} gross profit
               </p>
             </div>
@@ -564,7 +564,7 @@ export default async function AdminDashboard() {
 
           <div className="mt-4 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/5 bg-black/20">
             <div className="p-3 text-center">
-              <p className="text-[9px] uppercase tracking-wider text-white/60">
+              <p className="text-[9px] uppercase tracking-wider text-white/30">
                 Today
               </p>
               <p className="mt-1 text-sm font-black">
@@ -572,7 +572,7 @@ export default async function AdminDashboard() {
               </p>
             </div>
             <div className="p-3 text-center">
-              <p className="text-[9px] uppercase tracking-wider text-white/60">
+              <p className="text-[9px] uppercase tracking-wider text-white/30">
                 Week
               </p>
               <p className="mt-1 text-sm font-black">
@@ -580,7 +580,7 @@ export default async function AdminDashboard() {
               </p>
             </div>
             <div className="p-3 text-center">
-              <p className="text-[9px] uppercase tracking-wider text-white/60">
+              <p className="text-[9px] uppercase tracking-wider text-white/30">
                 Month
               </p>
               <p className="mt-1 text-sm font-black">
@@ -602,7 +602,7 @@ export default async function AdminDashboard() {
 
             <Link
               href="/admin/products"
-              className="text-[10px] font-bold text-white/70 transition hover:text-white"
+              className="text-[10px] font-bold text-white/40 transition hover:text-white"
             >
               Manage →
             </Link>
@@ -613,7 +613,7 @@ export default async function AdminDashboard() {
               <p className="text-xl font-black text-red-300">
                 {criticalStock}
               </p>
-              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/60">
+              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/30">
                 Critical
               </p>
             </div>
@@ -622,7 +622,7 @@ export default async function AdminDashboard() {
               <p className="text-xl font-black text-amber-300">
                 {lowStock.length}
               </p>
-              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/60">
+              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/30">
                 Low
               </p>
             </div>
@@ -631,7 +631,7 @@ export default async function AdminDashboard() {
               <p className="text-xl font-black text-lime-300">
                 {healthyStock}
               </p>
-              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/60">
+              <p className="mt-1 text-[9px] uppercase tracking-wider text-white/30">
                 Healthy
               </p>
             </div>
@@ -639,7 +639,7 @@ export default async function AdminDashboard() {
 
           <div className="mb-4">
             <div className="mb-2 flex justify-between text-[9px] uppercase tracking-wider">
-              <span className="text-white/60">Capital in inventory</span>
+              <span className="text-white/30">Capital in inventory</span>
               <span className="font-bold text-white/60">
                 {formatCurrency(stockValue)}
               </span>
@@ -670,7 +670,7 @@ export default async function AdminDashboard() {
                     <p className="truncate text-xs font-bold">
                       {product.name}
                     </p>
-                    <p className="text-[9px] text-white/60">
+                    <p className="text-[9px] text-white/30">
                       Size {product.size}
                     </p>
                   </div>
@@ -717,7 +717,7 @@ export default async function AdminDashboard() {
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black ${
                       index === 0
                         ? "bg-violet-500 text-white"
-                        : "bg-white/5 text-white/70"
+                        : "bg-white/5 text-white/40"
                     }`}
                   >
                     #{index + 1}
@@ -727,7 +727,7 @@ export default async function AdminDashboard() {
                     <p className="truncate text-xs font-bold">
                       {product.name}
                     </p>
-                    <p className="mt-0.5 text-[9px] text-white/60">
+                    <p className="mt-0.5 text-[9px] text-white/30">
                       {product.units} units ·{" "}
                       {formatCurrency(product.revenue)} revenue
                     </p>
@@ -737,7 +737,7 @@ export default async function AdminDashboard() {
                     <p className="text-xs font-black text-lime-300">
                       {formatCurrency(product.profit)}
                     </p>
-                    <p className="text-[8px] uppercase tracking-wider text-white/55">
+                    <p className="text-[8px] uppercase tracking-wider text-white/25">
                       profit
                     </p>
                   </div>
@@ -746,11 +746,11 @@ export default async function AdminDashboard() {
             </div>
           ) : (
             <div className="rounded-2xl border border-dashed border-white/10 p-8 text-center">
-              <Package className="mx-auto h-8 w-8 text-white/75" />
+              <Package className="mx-auto h-8 w-8 text-white/15" />
               <p className="mt-3 text-sm font-semibold text-white/50">
                 No sales data yet
               </p>
-              <p className="mt-1 text-[10px] text-white/55">
+              <p className="mt-1 text-[10px] text-white/25">
                 Your top performers will appear here after your first sales.
               </p>
             </div>
@@ -783,12 +783,12 @@ export default async function AdminDashboard() {
                     {pendingOrders} pending order
                     {pendingOrders === 1 ? "" : "s"}
                   </p>
-                  <p className="text-[9px] text-white/60">
+                  <p className="text-[9px] text-white/30">
                     Review and process your order queue.
                   </p>
                 </div>
 
-                <ChevronRight className="h-4 w-4 text-white/50 transition group-hover:translate-x-1" />
+                <ChevronRight className="h-4 w-4 text-white/20 transition group-hover:translate-x-1" />
               </Link>
             )}
 
@@ -806,12 +806,12 @@ export default async function AdminDashboard() {
                     {lowStock.length} low-stock product
                     {lowStock.length === 1 ? "" : "s"}
                   </p>
-                  <p className="text-[9px] text-white/60">
+                  <p className="text-[9px] text-white/30">
                     Review inventory before your next sourcing trip.
                   </p>
                 </div>
 
-                <ChevronRight className="h-4 w-4 text-white/50 transition group-hover:translate-x-1" />
+                <ChevronRight className="h-4 w-4 text-white/20 transition group-hover:translate-x-1" />
               </Link>
             )}
 
@@ -829,12 +829,12 @@ export default async function AdminDashboard() {
                     {slowMovingProducts.length} product
                     {slowMovingProducts.length === 1 ? "" : "s"} with no sales
                   </p>
-                  <p className="text-[9px] text-white/60">
+                  <p className="text-[9px] text-white/30">
                     Consider featuring or repricing slow movers.
                   </p>
                 </div>
 
-                <ChevronRight className="h-4 w-4 text-white/50 transition group-hover:translate-x-1" />
+                <ChevronRight className="h-4 w-4 text-white/20 transition group-hover:translate-x-1" />
               </Link>
             )}
 
@@ -846,7 +846,7 @@ export default async function AdminDashboard() {
                   <p className="mt-2 text-xs font-bold text-lime-200">
                     All systems looking good.
                   </p>
-                  <p className="mt-1 text-[9px] text-white/60">
+                  <p className="mt-1 text-[9px] text-white/30">
                     No immediate actions required.
                   </p>
                 </div>
@@ -867,7 +867,7 @@ export default async function AdminDashboard() {
               YK// BUSINESS INSIGHT
             </p>
             <h2 className="mt-1 text-sm font-black">{insight}</h2>
-            <p className="mt-1 max-w-2xl text-xs leading-5 text-white/70">
+            <p className="mt-1 max-w-2xl text-xs leading-5 text-white/40">
               {insightDetail}
             </p>
           </div>
@@ -878,13 +878,13 @@ export default async function AdminDashboard() {
       <section className="mt-6 rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <p className="text-[9px] font-black uppercase tracking-[0.25em] text-white/65">
+            <p className="text-[9px] font-black uppercase tracking-[0.25em] text-white/35">
               YK// LIVE FEED
             </p>
             <h2 className="mt-1 text-lg font-black">Recent activity</h2>
           </div>
 
-          <Activity className="h-5 w-5 text-white/55" />
+          <Activity className="h-5 w-5 text-white/25" />
         </div>
 
         {activity.length > 0 ? (
@@ -910,12 +910,12 @@ export default async function AdminDashboard() {
 
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-xs font-bold">{item.title}</p>
-                  <p className="truncate text-[9px] text-white/60">
+                  <p className="truncate text-[9px] text-white/30">
                     {item.detail}
                   </p>
                 </div>
 
-                <p className="shrink-0 text-[9px] text-white/55">
+                <p className="shrink-0 text-[9px] text-white/25">
                   {formatDate(item.date)}
                 </p>
               </div>
@@ -924,7 +924,7 @@ export default async function AdminDashboard() {
         ) : (
           <div className="py-8 text-center">
             <Box className="mx-auto h-7 w-7 text-white/10" />
-            <p className="mt-2 text-xs text-white/60">
+            <p className="mt-2 text-xs text-white/30">
               Activity will appear here as your store gets busy.
             </p>
           </div>
@@ -932,7 +932,7 @@ export default async function AdminDashboard() {
       </section>
 
       {/* FOOTER */}
-      <div className="flex flex-col gap-2 py-6 text-[9px] uppercase tracking-[0.18em] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-2 py-6 text-[9px] uppercase tracking-[0.18em] text-white/20 sm:flex-row sm:items-center sm:justify-between">
         <span>YK// MWIHO KICKS CONTROL SYSTEM</span>
         <span>{formatDate(now.toISOString())}</span>
       </div>

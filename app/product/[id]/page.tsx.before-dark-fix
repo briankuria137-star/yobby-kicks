@@ -50,7 +50,7 @@ export default async function ProductPage({
   return (
     <div className="min-h-screen flex flex-col">
       <StoreHeader settings={settingsMap} />
-      <main className="flex-1 bg-cream">
+      <main className="flex-1 bg-gray-50">
         <ProductDetail product={product} settings={settingsMap} />
       </main>
       <StoreFooter settings={settingsMap} />

@@ -72,7 +72,7 @@ export default async function HomePage({
       <main className="flex-1">
 
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[#09090B] text-[#F4F4F5]">
+        <section className="relative overflow-hidden bg-ink text-white">
           <div className="luxury-container">
             <div className="grid min-h-[460px] items-center py-16 md:grid-cols-2 md:py-20">
 
@@ -83,19 +83,19 @@ export default async function HomePage({
 
                 <h1 className="text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
                   Step into
-                  <span className="block text-white">
+                  <span className="block text-white/60">
                     something better.
                   </span>
                 </h1>
 
-                <p className="mt-6 max-w-md text-sm leading-7 text-white/90 sm:text-base">
+                <p className="mt-6 max-w-md text-sm leading-7 text-white/65 sm:text-base">
                   {description}
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
                     href="#shop"
-                    className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-ink transition hover:-translate-y-0.5 hover:bg-accent/80"
+                    className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-ink transition hover:-translate-y-0.5 hover:bg-white/90"
                   >
                     Shop collection
                   </a>
@@ -117,8 +117,8 @@ export default async function HomePage({
               <div className="hidden md:flex md:justify-end">
                 {products?.[0]?.product_images?.[0]?.image_url ? (
                   <div className="relative w-full max-w-md">
-                    <div className="absolute -inset-6 rounded-[2rem] bg-violet-500/[0.04] blur-2xl" />
-                    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-4 shadow-2xl">
+                    <div className="absolute -inset-6 rounded-[2rem] bg-white/[0.03] blur-2xl" />
+                    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl">
                       <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-white">
                         <img
                           src={products[0].product_images[0].image_url}
@@ -131,7 +131,7 @@ export default async function HomePage({
                       </div>
                       <div className="flex items-end justify-between px-2 pb-2 pt-5">
                         <div>
-                          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
                             Available now
                           </p>
                           <p className="mt-1 text-lg font-bold text-white">
@@ -145,10 +145,10 @@ export default async function HomePage({
                     </div>
                   </div>
                 ) : (
-                  <div className="flex h-80 w-80 items-center justify-center rounded-[2rem] border border-white/10 bg-white/[0.06]">
+                  <div className="flex h-80 w-80 items-center justify-center rounded-[2rem] border border-white/10 bg-white/[0.04]">
                     <div className="text-center">
                       <Sparkles className="mx-auto mb-3 h-7 w-7 text-accent" />
-                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/85">
+                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
                         YobbyKicks
                       </p>
                       <p className="mt-2 text-2xl font-black text-white">
@@ -164,7 +164,7 @@ export default async function HomePage({
         </section>
 
         {/* TRUST BAR */}
-        <section className="border-b border-white/10 bg-surface">
+        <section className="border-b border-black/10 bg-white">
           <div className="luxury-container">
             <div className="grid grid-cols-2 divide-x divide-black/10 md:grid-cols-4">
 
@@ -242,7 +242,7 @@ export default async function HomePage({
           {products && products.length > 0 ? (
             <ProductGrid products={products} whatsapp={whatsapp} />
           ) : (
-            <div className="rounded-2xl border border-white/10 bg-surface px-6 py-20 text-center">
+            <div className="rounded-2xl border border-black/10 bg-white px-6 py-20 text-center">
               <Sparkles className="mx-auto h-8 w-8 text-accent" />
 
               <h3 className="mt-4 text-lg font-bold">
@@ -266,7 +266,7 @@ export default async function HomePage({
         </section>
 
         {/* CUSTOMER SERVICE CTA */}
-        <section className="border-y border-white/10 bg-surface">
+        <section className="border-y border-black/10 bg-sand/40">
           <div className="luxury-container py-14">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
@@ -290,7 +290,7 @@ export default async function HomePage({
                   href={`https://wa.me/${whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:-translate-y-0.5"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:-translate-y-0.5"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Chat with us

@@ -12,7 +12,7 @@
   }
 
   ::selection {
-    @apply bg-ink text-white;
+    @apply bg-accent text-white;
   }
 }
 
@@ -22,11 +22,15 @@
   }
 
   .eyebrow {
-    @apply text-[10px] font-semibold uppercase tracking-luxury;
+    @apply text-[10px] font-bold uppercase tracking-[0.22em];
   }
 
   .luxury-button {
-    @apply inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-soft;
+    @apply inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-400;
+  }
+
+  .yk-glass {
+    @apply border border-white/10 bg-white/[0.045] backdrop-blur-xl;
   }
 }
 

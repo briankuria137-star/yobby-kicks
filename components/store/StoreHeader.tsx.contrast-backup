@@ -30,7 +30,7 @@ export function StoreHeader({
     : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#09090B]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-cream/95 backdrop-blur-xl">
       <div className="luxury-container">
         <div className="flex h-[76px] items-center justify-between">
 
@@ -44,7 +44,7 @@ export function StoreHeader({
               {businessName}
             </div>
 
-            <div className="eyebrow mt-0.5 text-white/80">
+            <div className="eyebrow mt-0.5 text-muted">
               Footwear / Mwihoko
             </div>
           </Link>
@@ -55,7 +55,7 @@ export function StoreHeader({
               <Link
                 key={category}
                 href={`/?category=${category}`}
-                className="relative py-2 text-xs font-semibold uppercase tracking-widest text-white/90 transition hover:text-violet-300"
+                className="relative py-2 text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-ink"
               >
                 {label}
               </Link>
@@ -105,7 +105,7 @@ export function StoreHeader({
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="border-t border-white/10 bg-[#09090B] md:hidden">
+        <div className="border-t border-white/10 bg-cream md:hidden">
           <div className="luxury-container py-5">
 
             <div className="mb-4 flex items-center justify-between">
@@ -116,7 +116,7 @@ export function StoreHeader({
               <Link
                 href="/?category=all"
                 onClick={() => setMenuOpen(false)}
-                className="text-[10px] font-bold uppercase tracking-widest text-white/80"
+                className="text-[10px] font-bold uppercase tracking-widest text-muted"
               >
                 View all
               </Link>
@@ -132,7 +132,7 @@ export function StoreHeader({
                 >
                   <span>{label}</span>
 
-                  <ArrowUpRight className="h-4 w-4 text-white/80 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
+                  <ArrowUpRight className="h-4 w-4 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
                 </Link>
               ))}
             </div>
@@ -151,7 +151,7 @@ export function StoreHeader({
               </a>
             )}
 
-            <p className="mt-5 text-center text-[10px] uppercase tracking-widest text-white/80">
+            <p className="mt-5 text-center text-[10px] uppercase tracking-widest text-muted">
               Quality mtumba footwear · Mwihoko
             </p>
           </div>
