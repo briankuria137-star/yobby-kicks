@@ -261,25 +261,25 @@ export default async function HomePage({
         </section>
 
         {/* SHOP */}
-        <section id="shop" className="luxury-container py-12 md:py-16">
+        <section id="shop" className="luxury-container py-16 md:py-20 lg:py-24">
 
-          <div className="mb-9 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="eyebrow text-accent">
                 The collection
               </p>
 
-              <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+              <h2 className="mt-2 text-3xl font-black tracking-[-0.045em] sm:text-4xl">
                 Available now
               </h2>
 
-              <p className="mt-2 max-w-md text-sm text-muted">
+              <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
                 Browse our current selection. Every pair is subject to
                 availability.
               </p>
             </div>
 
-            <div className="text-xs text-muted">
+            <div className="rounded-full border border-black/10 bg-black/[0.025] px-4 py-2 text-[9px] font-black uppercase tracking-[0.16em] text-muted">
               {products?.length || 0}{" "}
               {(products?.length || 0) === 1 ? "pair" : "pairs"} available
             </div>
