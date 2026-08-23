@@ -73,28 +73,28 @@ export default async function HomePage({
       <main className="flex-1">
 
         {/* HERO */}
-        <section className="relative isolate overflow-hidden bg-[#09090B] text-[#F4F4F5] shadow-[0_30px_100px_rgba(0,0,0,0.22)]">
+        <section className="relative isolate overflow-hidden bg-[#07070A] text-[#F4F4F5] shadow-[0_35px_120px_rgba(0,0,0,0.28)]">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
-            <div className="absolute right-[-8rem] top-1/3 h-[30rem] w-[30rem] rounded-full bg-fuchsia-500/[0.06] blur-3xl" />
+            <div className="absolute -left-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-violet-600/[0.11] blur-3xl" />
+            <div className="absolute -right-32 top-1/4 h-[34rem] w-[34rem] rounded-full bg-fuchsia-500/[0.07] blur-3xl" />
             <div className="absolute inset-0 yk-grid opacity-30" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_12%,rgba(0,0,0,0.62)_100%)]" />
           </div>
 
           <div className="luxury-container relative">
-            <div className="grid min-h-[560px] items-center gap-12 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:min-h-[620px]">
+            <div className="grid min-h-[600px] items-center gap-14 py-20 md:grid-cols-[1.02fr_0.98fr] md:py-24 lg:min-h-[680px]">
 
               <div className="max-w-2xl animate-cinematic">
                 <div className="yk-status mb-6">{location}</div>
 
-                <div className="mb-5 flex items-center gap-3">
+                <div className="mb-6 flex items-center gap-3">
                   <span className="h-px w-10 bg-accent" />
                   <span className="text-[9px] font-black uppercase tracking-[0.28em] text-white/60">
                     Curated footwear
                   </span>
                 </div>
 
-                <h1 className="text-balance text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+                <h1 className="text-balance text-5xl font-black leading-[0.9] tracking-[-0.065em] sm:text-6xl md:text-7xl lg:text-[6rem]">
                   Step into
                   <span className="block bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
                     something
@@ -102,11 +102,11 @@ export default async function HomePage({
                   <span className="block text-accent">better.</span>
                 </h1>
 
-                <p className="mt-7 max-w-lg text-sm leading-7 text-white/60 sm:text-base">
+                <p className="mt-8 max-w-xl text-sm leading-7 text-white/60 sm:text-base md:text-[1.05rem]">
                   {description}
                 </p>
 
-                <div className="mt-9 flex flex-wrap gap-3">
+                <div className="mt-10 flex flex-wrap gap-3">
                   <a href="#shop" className="luxury-button group shadow-[0_14px_40px_rgba(139,92,246,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(139,92,246,0.32)] active:translate-y-0">
                     Shop collection
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -125,7 +125,7 @@ export default async function HomePage({
                   )}
                 </div>
 
-                <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/10 pt-6">
+                <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/10 pt-7">
                   <div>
                     <p className="yk-number">01 / Selection</p>
                     <p className="mt-1 text-[10px] text-white/50">Carefully selected pairs</p>
@@ -159,12 +159,12 @@ export default async function HomePage({
                         </p>
                       </div>
 
-                      <div className="group overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_35px_110px_rgba(0,0,0,0.55)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_45px_130px_rgba(0,0,0,0.65)]">
-                        <div className="relative aspect-[0.92] overflow-hidden rounded-[2rem] bg-white">
+                      <div className="group overflow-hidden rounded-[2.75rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_40px_120px_rgba(0,0,0,0.58)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_50px_145px_rgba(0,0,0,0.68)]">
+                        <div className="relative aspect-[0.88] overflow-hidden rounded-[2.25rem] bg-white">
                           <img
                             src={products[0].product_images[0].image_url}
                             alt={products[0].name}
-                            className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                            className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.045]"
                           />
 
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-100" />
