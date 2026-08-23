@@ -73,12 +73,12 @@ export default async function HomePage({
       <main className="flex-1">
 
         {/* HERO */}
-        <section className="relative isolate overflow-hidden bg-[#09090B] text-[#F4F4F5]">
+        <section className="relative isolate overflow-hidden bg-[#09090B] text-[#F4F4F5] shadow-[0_30px_100px_rgba(0,0,0,0.22)]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
             <div className="absolute right-[-8rem] top-1/3 h-[30rem] w-[30rem] rounded-full bg-fuchsia-500/[0.06] blur-3xl" />
-            <div className="absolute inset-0 yk-grid opacity-40" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.5)_100%)]" />
+            <div className="absolute inset-0 yk-grid opacity-30" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_12%,rgba(0,0,0,0.62)_100%)]" />
           </div>
 
           <div className="luxury-container relative">
@@ -107,7 +107,7 @@ export default async function HomePage({
                 </p>
 
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <a href="#shop" className="luxury-button group">
+                  <a href="#shop" className="luxury-button group shadow-[0_14px_40px_rgba(139,92,246,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(139,92,246,0.32)] active:translate-y-0">
                     Shop collection
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
@@ -117,7 +117,7 @@ export default async function HomePage({
                       href={`https://wa.me/${whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08]"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_35px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-white/[0.08] hover:shadow-[0_20px_45px_rgba(0,0,0,0.28)] active:translate-y-0"
                     >
                       <MessageCircle className="h-4 w-4" />
                       WhatsApp us
@@ -125,7 +125,7 @@ export default async function HomePage({
                   )}
                 </div>
 
-                <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 pt-5">
+                <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/10 pt-6">
                   <div>
                     <p className="yk-number">01 / Selection</p>
                     <p className="mt-1 text-[10px] text-white/50">Carefully selected pairs</p>
@@ -153,21 +153,21 @@ export default async function HomePage({
                     <div className="absolute -inset-8 rounded-[3rem] bg-violet-500/[0.07] blur-3xl" />
 
                     <div className="relative">
-                      <div className="absolute -right-5 -top-5 z-10 rounded-full border border-white/10 bg-black/70 px-4 py-2 backdrop-blur-xl">
+                      <div className="absolute -right-4 -top-4 z-10 rounded-full border border-white/10 bg-black/70 px-4 py-2.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl">
                         <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
                           Featured / 001
                         </p>
                       </div>
 
-                      <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+                      <div className="group overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_35px_110px_rgba(0,0,0,0.55)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_45px_130px_rgba(0,0,0,0.65)]">
                         <div className="relative aspect-[0.92] overflow-hidden rounded-[2rem] bg-white">
                           <img
                             src={products[0].product_images[0].image_url}
                             alt={products[0].name}
-                            className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                            className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
                           />
 
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-100" />
 
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                             <div>
@@ -185,7 +185,7 @@ export default async function HomePage({
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between px-3 pb-2 pt-4">
+                        <div className="flex items-center justify-between border-t border-white/5 px-3 pb-2 pt-4">
                           <p className="yk-number">YobbyKicks_KE</p>
                           <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-white/50">
                             Explore
@@ -212,7 +212,7 @@ export default async function HomePage({
           </div>
         </section>
         {/* TRUST BAR */}
-        <section className="border-b border-white/10 bg-surface">
+        <section className="border-b border-white/10 bg-surface/95 shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
           <div className="luxury-container">
             <div className="grid grid-cols-2 divide-x divide-black/10 md:grid-cols-4">
 
@@ -263,7 +263,7 @@ export default async function HomePage({
         {/* SHOP */}
         <section id="shop" className="luxury-container py-12 md:py-16">
 
-          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-9 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="eyebrow text-accent">
                 The collection
@@ -290,7 +290,7 @@ export default async function HomePage({
           {products && products.length > 0 ? (
             <ProductGrid products={products} whatsapp={whatsapp} />
           ) : (
-            <div className="rounded-2xl border border-white/10 bg-surface px-6 py-20 text-center">
+            <div className="rounded-[1.75rem] border border-white/10 bg-surface/90 px-6 py-20 text-center shadow-[0_18px_70px_rgba(0,0,0,0.12)] backdrop-blur-xl">
               <Sparkles className="mx-auto h-8 w-8 text-accent" />
 
               <h3 className="mt-4 text-lg font-bold">
@@ -304,7 +304,7 @@ export default async function HomePage({
 
               <a
                 href="/"
-                className="mt-6 inline-flex rounded-full bg-ink px-6 py-3 text-xs font-bold uppercase tracking-widest text-white"
+                className="mt-6 inline-flex rounded-full bg-ink px-7 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_35px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_45px_rgba(0,0,0,0.26)]"
               >
                 View all shoes
               </a>
@@ -314,7 +314,7 @@ export default async function HomePage({
         </section>
 
         {/* CUSTOMER SERVICE CTA */}
-        <section className="border-y border-white/10 bg-surface">
+        <section className="border-y border-white/10 bg-surface/95 shadow-[0_-10px_40px_rgba(0,0,0,0.04)]">
           <div className="luxury-container py-14">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
@@ -338,7 +338,7 @@ export default async function HomePage({
                   href={`https://wa.me/${whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:-translate-y-0.5"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_40px_rgba(139,92,246,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(139,92,246,0.32)] active:translate-y-0"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Chat with us

@@ -42,7 +42,7 @@ export function ProductGrid({
         return (
           <article
             key={product.id}
-            className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-surface/90 shadow-[0_18px_70px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-700 ease-out hover:-translate-y-2 hover:border-accent/40 hover:shadow-[0_30px_90px_rgba(0,0,0,0.3)]"
+            className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-surface/90 shadow-[0_22px_75px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-700 ease-out hover:-translate-y-2 hover:border-accent/40 hover:shadow-[0_35px_100px_rgba(0,0,0,0.34)]"
             style={{
               animationDelay: `${Math.min(index * 60, 420)}ms`,
             }}
@@ -53,7 +53,7 @@ export function ProductGrid({
                   <img
                     src={image.image_url}
                     alt={product.name}
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.08]"
                     loading="lazy"
                   />
                 ) : (
@@ -62,7 +62,7 @@ export function ProductGrid({
                   </div>
                 )}
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
 
                 {isNew && (
                   <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-pink-500 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.18em] text-white shadow-lg shadow-pink-500/20">
@@ -77,7 +77,7 @@ export function ProductGrid({
                   </div>
                 )}
 
-                <div className="absolute bottom-3 right-3 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="absolute bottom-3 right-3 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-black/75 text-white opacity-0 shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </div>
@@ -117,7 +117,7 @@ export function ProductGrid({
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-end justify-between gap-3">
+                <div className="mt-5 flex items-end justify-between gap-3">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Price
@@ -127,7 +127,7 @@ export function ProductGrid({
                     </p>
                   </div>
 
-                  <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-accent">
+                  <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent">
                     Details
                     <ArrowUpRight className="h-3 w-3" />
                   </span>
@@ -141,7 +141,7 @@ export function ProductGrid({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-accent/30 bg-accent px-4 py-3 text-[8px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-violet-500/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-violet-500/20"
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl border border-accent/30 bg-accent px-4 py-3.5 text-[8px] font-black uppercase tracking-[0.16em] text-white shadow-[0_12px_35px_rgba(139,92,246,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-violet-400 hover:shadow-[0_20px_50px_rgba(139,92,246,0.28)] active:translate-y-0"
                 >
                   <MessageCircle className="h-3.5 w-3.5" />
                   Order on WhatsApp
