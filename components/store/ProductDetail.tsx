@@ -274,16 +274,22 @@ export function ProductDetail({
 
           {/* WHATSAPP ORDER */}
           {whatsappUrl && product.stock_quantity > 0 && (
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-10 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4.5 text-xs font-black uppercase tracking-[0.16em] text-white shadow-[0_18px_50px_rgba(139,92,246,0.26)] transition-all duration-300 hover:-translate-y-1 hover:bg-violet-400 hover:shadow-[0_28px_70px_rgba(139,92,246,0.38)] active:translate-y-0"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Order via WhatsApp
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+            <div className="mt-10">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4.5 text-xs font-black uppercase tracking-[0.16em] text-white shadow-[0_18px_50px_rgba(139,92,246,0.26)] transition-all duration-300 hover:-translate-y-1 hover:bg-violet-400 hover:shadow-[0_28px_70px_rgba(139,92,246,0.38)] active:translate-y-0"
+              >
+                <MessageCircle className="h-5 w-5 shrink-0" />
+                <span>Order via WhatsApp</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+
+              <p className="mt-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Message us about this exact pair
+              </p>
+            </div>
           )}
 
           {/* TRUST */}
