@@ -82,7 +82,7 @@ export function ProductGrid({
                 </div>
               </div>
 
-              <div className="relative flex flex-col p-4 sm:p-5">
+              <div className="relative flex min-w-0 flex-col p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
                     {product.category}
@@ -97,21 +97,21 @@ export function ProductGrid({
                   {product.name}
                 </h3>
 
-                <div className="mt-4 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
+                <div className="mt-4 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Size
                     </p>
-                    <p className="mt-0.5 text-[10px] font-black text-ink">
+                    <p className="mt-1 break-words text-[10px] font-black leading-4 text-ink">
                       {product.size}
                     </p>
                   </div>
 
-                  <div className="text-right">
+                  <div className="min-w-0 text-right">
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Condition
                     </p>
-                    <p className="mt-0.5 truncate text-[10px] font-black text-ink">
+                    <p className="mt-1 break-words text-[10px] font-black leading-4 text-ink">
                       {getConditionLabel(product.condition)}
                     </p>
                   </div>
