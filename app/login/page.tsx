@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/supabase/client";
 import { useRouter } from "next/navigation";
 import { Lock, Mail, AlertCircle } from "lucide-react";
@@ -10,8 +10,25 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [businessName, setBusinessName] = useState("Your Business");
   const router = useRouter();
   const supabase = createClient();
+
+  useEffect(() => {
+    const loadBusinessName = async () => {
+      const { data }: { data: any } = await supabase
+        .from("settings")
+        .select("value")
+        .eq("key", "business_name")
+        .single();
+
+      if (data?.value) {
+        setBusinessName(data.value);
+      }
+    };
+
+    loadBusinessName();
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +54,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-sm">
         <div className="text-center mb-6">
-          <h1 className="text-xl font-bold text-gray-900">MWIHO KICKS</h1>
+          <h1 className="text-xl font-bold text-gray-900">{businessName}</h1>
           <p className="text-sm text-gray-500 mt-1">Admin Login</p>
         </div>
 
@@ -93,7 +110,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          MWIHO KICKS Admin Panel
+          {businessName} Admin Panel
         </p>
       </div>
     </div>

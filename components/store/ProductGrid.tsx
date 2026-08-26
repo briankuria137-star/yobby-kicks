@@ -14,9 +14,11 @@ type ProductCard = Product & {
 export function ProductGrid({
   products,
   whatsapp,
+  businessName,
 }: {
   products: ProductCard[];
   whatsapp?: string;
+  businessName?: string;
 }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
@@ -28,6 +30,7 @@ export function ProductGrid({
         const whatsappUrl = whatsapp
           ? generateWhatsAppMessage(
               whatsapp,
+              businessName || "Your Business",
               product.name,
               product.id,
               product.size,

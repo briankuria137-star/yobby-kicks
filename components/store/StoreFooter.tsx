@@ -7,6 +7,8 @@ export function StoreFooter({
 }: {
   settings: Map<string, string>;
 }) {
+  const businessName = settings.get("business_name") || "Your Business";
+  const location = settings.get("location") || "Kenya";
   const whatsapp = settings.get("whatsapp_number");
   const instagram = settings.get("instagram_username");
 
@@ -15,7 +17,7 @@ export function StoreFooter({
       <div className="luxury-container relative px-4 py-14 md:py-20">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_0.85fr_0.85fr] md:gap-14">
           <div>
-            <h3 className="text-xl font-black tracking-[-0.055em] transition-all duration-300 hover:-translate-y-0.5 hover:text-accent">{settings.get("business_name") || "MWIHO KICKS"}</h3>
+            <h3 className="text-xl font-black tracking-[-0.055em] transition-all duration-300 hover:-translate-y-0.5 hover:text-accent">{businessName}</h3>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/45">{settings.get("shop_description")}</p>
           </div>
           <div>
@@ -23,7 +25,7 @@ export function StoreFooter({
             <div className="mt-5 space-y-3 text-sm text-white/45">
               <div className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.025] px-3.5 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/10 hover:bg-white/[0.05]">
                 <MapPin className="h-4 w-4 text-accent/80" />
-                <span>{settings.get("location") || "Mwihoko, Kenya"}</span>
+                <span>{location}</span>
               </div>
               {whatsapp && (
                 <a
@@ -56,7 +58,7 @@ export function StoreFooter({
           </div>
         </div>
         <div className="mt-14 border-t border-white/10 pt-7 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-white/25">
-          © {new Date().getFullYear()} {settings.get("business_name") || "MWIHO KICKS"}. All rights reserved.
+          © {new Date().getFullYear()} {businessName}. All rights reserved.
         </div>
       </div>
     </footer>

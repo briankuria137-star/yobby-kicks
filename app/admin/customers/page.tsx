@@ -126,14 +126,14 @@ export default function AdminCustomersPage() {
 
         <button
           onClick={fetchCustomers}
-          className="text-sm border border-white/10 rounded-md px-3 py-2 hover:bg-white/[0.03]"
+          className="text-sm border border-white/[0.08] rounded-md px-3 py-2 hover:bg-[#0f0f14]"
         >
           Refresh
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white/[0.035] rounded-lg border p-4">
+        <div className="bg-[#111116] rounded-lg border border-white/[0.08] p-4">
           <div className="flex items-center gap-2 text-white/60 text-sm">
             <Users className="w-4 h-4" />
             Customers
@@ -141,7 +141,7 @@ export default function AdminCustomersPage() {
           <p className="text-2xl font-bold mt-2">{totalCustomers}</p>
         </div>
 
-        <div className="bg-white/[0.035] rounded-lg border p-4">
+        <div className="bg-[#111116] rounded-lg border border-white/[0.08] p-4">
           <div className="flex items-center gap-2 text-white/60 text-sm">
             <ShoppingBag className="w-4 h-4" />
             Returning Customers
@@ -149,7 +149,7 @@ export default function AdminCustomersPage() {
           <p className="text-2xl font-bold mt-2">{returningCustomers}</p>
         </div>
 
-        <div className="bg-white/[0.035] rounded-lg border p-4">
+        <div className="bg-[#111116] rounded-lg border border-white/[0.08] p-4">
           <p className="text-sm text-white/60">Customer Revenue</p>
           <p className="text-2xl font-bold mt-2">
             {formatCurrency(totalCustomerRevenue)}
@@ -157,19 +157,19 @@ export default function AdminCustomersPage() {
         </div>
       </div>
 
-      <div className="bg-white/[0.035] rounded-lg border mb-4 p-3">
+      <div className="bg-[#111116] rounded-lg border border-white/[0.08] mb-4 p-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by customer name, phone or location..."
-            className="w-full rounded-md border border-white/10 bg-white/[0.035] pl-9 pr-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full rounded-md border border-white/[0.08] bg-[#111116] pl-9 pr-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
       </div>
 
-      <div className="bg-white/[0.035] rounded-lg border overflow-hidden">
+      <div className="bg-[#111116] rounded-lg border border-white/[0.08] overflow-hidden">
         {loading ? (
           <div className="p-8 text-center text-white/60">
             Loading customers...
@@ -229,7 +229,7 @@ export default function AdminCustomersPage() {
                       onClick={() =>
                         setExpandedCustomer(expanded ? null : customer.id)
                       }
-                      className="p-2 rounded-md hover:bg-white/[0.03]"
+                      className="p-2 rounded-md hover:bg-[#0f0f14]"
                     >
                       {expanded ? (
                         <ChevronUp className="w-4 h-4" />
@@ -240,7 +240,7 @@ export default function AdminCustomersPage() {
                   </div>
 
                   {expanded && (
-                    <div className="mt-4 pt-4 border-t">
+                    <div className="mt-4 pt-4 border-t border-white/[0.08]">
                       <p className="font-medium text-sm mb-2">
                         Order History
                       </p>
@@ -254,7 +254,7 @@ export default function AdminCustomersPage() {
                           {customer.orders.map((order) => (
                             <div
                               key={order.id}
-                              className="flex flex-wrap items-center justify-between gap-2 rounded-md border bg-white/[0.03] px-3 py-2 text-xs"
+                              className="flex flex-wrap items-center justify-between gap-2 rounded-md border bg-[#0f0f14] px-3 py-2 text-xs"
                             >
                               <span className="font-medium">
                                 {order.order_number ||

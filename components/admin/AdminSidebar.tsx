@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -28,6 +29,23 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const supabase = createClient();
+  const [businessName, setBusinessName] = useState("Your Business");
+
+  useEffect(() => {
+    const loadBusinessName = async () => {
+      const { data }: { data: any } = await supabase
+        .from("settings")
+        .select("value")
+        .eq("key", "business_name")
+        .single();
+
+      if (data?.value) {
+        setBusinessName(data.value);
+      }
+    };
+
+    loadBusinessName();
+  }, []);
 
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -36,16 +54,16 @@ export function AdminSidebar() {
   };
 
   return (
-    <aside className="w-full shrink-0 bg-primary text-white md:sticky md:top-0 md:h-screen md:w-64">
+    <aside className="w-full shrink-0 bg-[#15151b] text-white md:sticky md:top-0 md:h-screen md:w-64">
       {/* Brand */}
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
+      <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-4">
         <Link href="/admin" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1a1a22]">
             <Store className="h-5 w-5" />
           </div>
 
           <div>
-            <p className="text-sm font-bold tracking-wide">MWIHO KICKS</p>
+            <p className="text-sm font-bold tracking-wide">{businessName}</p>
             <p className="text-[10px] uppercase tracking-widest text-white/50">
               Admin Panel
             </p>
@@ -67,14 +85,14 @@ export function AdminSidebar() {
               href={href}
               className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
                 active
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-white/65 hover:bg-white/10 hover:text-white"
+                  ? "bg-[#1a1a22] text-white shadow-sm"
+                  : "text-white/65 hover:bg-[#1a1a22] hover:text-white"
               }`}
             >
               <Icon
                 className={`h-4 w-4 shrink-0 ${
                   active
-                    ? "text-gray-900"
+                    ? "text-white"
                     : "text-white/45 group-hover:text-white"
                 }`}
               />
@@ -82,7 +100,7 @@ export function AdminSidebar() {
               <span>{label}</span>
 
               {active && (
-                <span className="ml-auto hidden h-1.5 w-1.5 rounded-full bg-gray-900 md:block" />
+                <span className="ml-auto hidden h-1.5 w-1.5 rounded-full bg-white md:block" />
               )}
             </Link>
           );
@@ -90,12 +108,12 @@ export function AdminSidebar() {
       </nav>
 
       {/* Bottom actions */}
-      <div className="border-t border-white/10 p-3 md:absolute md:bottom-0 md:left-0 md:w-64">
+      <div className="border-t border-white/[0.08] p-3 md:absolute md:bottom-0 md:left-0 md:w-64">
         <Link
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/65 transition-colors hover:bg-[#1a1a22] hover:text-white"
         >
           <ExternalLink className="h-4 w-4" />
           <span>View Store</span>
@@ -110,7 +128,7 @@ export function AdminSidebar() {
         </button>
 
         <p className="mt-3 px-3 text-[9px] uppercase tracking-widest text-white/25">
-          MWIHO KICKS • Admin
+          {businessName} • Admin
         </p>
       </div>
     </aside>

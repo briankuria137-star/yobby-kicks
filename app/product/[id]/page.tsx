@@ -13,22 +13,34 @@ export async function generateMetadata({
   const { id } = await params;
   const supabase: any = await createClient();
 
-  const { data: product } = await supabase
-    .from("products")
-    .select("name, description")
-    .eq("id", id)
-    .single();
+  const [{ data: product }, { data: settings }] = await Promise.all([
+    supabase
+      .from("products")
+      .select("name, description")
+      .eq("id", id)
+      .single(),
+
+    supabase.from("settings").select("*"),
+  ]);
+
+  const settingsMap = new Map<string, string>(
+    settings?.map(
+      (s: any) => [s.key, s.value] as [string, string]
+    ) || []
+  );
+
+  const businessName =
+    settingsMap.get("business_name") || "Your Business";
 
   return {
     title: product
-      ? `${product.name} | YobbyKicks_KE`
-      : "Product | YobbyKicks_KE",
+      ? `${product.name} | ${businessName}`
+      : `Product | ${businessName}`,
     description:
       product?.description ||
-      "View this quality mtumba shoe at YobbyKicks_KE.",
+      `View this product at ${businessName}.`,
   };
 }
-
 export default async function ProductPage({
   params,
 }: {

@@ -228,7 +228,7 @@ export default function AdminOrdersPage() {
         <h1 className="text-2xl font-bold text-white">Orders</h1>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+          className="flex items-center gap-2 bg-[#15151b] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1a1a22]"
         >
           <Plus className="w-4 h-4" />
           {showForm ? "Cancel" : "New Order"}
@@ -236,7 +236,7 @@ export default function AdminOrdersPage() {
       </div>
 
       {showForm && (
-        <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 p-4 mb-6">
+        <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] p-4 mb-6">
           <h2 className="font-semibold text-white mb-4">Create Order</h2>
           <form onSubmit={handleCreateOrder} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -244,30 +244,30 @@ export default function AdminOrdersPage() {
                 placeholder="Customer Name"
                 value={formData.customer_name}
                 onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <input
                 placeholder="Phone Number"
                 value={formData.customer_phone}
                 onChange={(e) => setFormData({ ...formData, customer_phone: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <input
                 placeholder="Location"
                 value={formData.customer_location}
                 onChange={(e) => setFormData({ ...formData, customer_location: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">Add Products</label>
-              <div className="border rounded-md p-2 max-h-40 overflow-y-auto">
+              <div className="border border-white/[0.08] rounded-md p-2 max-h-40 overflow-y-auto">
                 {products.length === 0 ? (
                   <p className="text-sm text-white/60 p-2">No available products</p>
                 ) : (
                   products.map((p) => (
-                    <div key={p.id} className="flex items-center justify-between p-2 hover:bg-white/[0.03] rounded">
+                    <div key={p.id} className="flex items-center justify-between p-2 hover:bg-[#0f0f14] rounded">
                       <div className="text-sm">
                         <span className="font-medium">{p.name}</span>
                         <span className="text-white/60 ml-2">Size {p.size}</span>
@@ -288,7 +288,7 @@ export default function AdminOrdersPage() {
             </div>
 
             {selectedItems.length > 0 && (
-              <div className="bg-white/[0.03] rounded-md p-3">
+              <div className="bg-[#0f0f14] rounded-md p-3">
                 <p className="text-sm font-medium mb-2">Selected Items</p>
                 {selectedItems.map((item) => (
                   <div key={item.product_id} className="flex items-center justify-between text-sm py-1">
@@ -304,7 +304,7 @@ export default function AdminOrdersPage() {
                     </button>
                   </div>
                 ))}
-                <p className="text-sm font-semibold mt-2 pt-2 border-t">
+                <p className="text-sm font-semibold mt-2 pt-2 border-t border-white/[0.08]">
                   Total: {formatCurrency(selectedItems.reduce((s, i) => s + i.price * i.quantity, 0))}
                 </p>
               </div>
@@ -315,12 +315,12 @@ export default function AdminOrdersPage() {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={2}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
 
             <button
               type="submit"
-              className="bg-primary text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+              className="bg-[#15151b] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#1a1a22]"
             >
               Create Order
             </button>
@@ -328,7 +328,7 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 overflow-hidden">
+      <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] overflow-hidden">
         {loading ? (
           <div className="p-8 text-center text-white/60">Loading...</div>
         ) : orders.length === 0 ? (
@@ -359,15 +359,15 @@ export default function AdminOrdersPage() {
                     <select
                       value={order.status}
                       onChange={(e) => handleStatusChange(order.id, e.target.value as Order["status"])}
-                      className="text-xs border border-white/10 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="text-xs border border-white/[0.08] rounded-md px-2 py-1 bg-[#111116] text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       {STATUS_OPTIONS.map((s) => (
-                        <option key={s} value={s}>{getOrderStatusLabel(s)}</option>
+                        <option key={s} value={s} className="bg-[#111116] text-white">{getOrderStatusLabel(s)}</option>
                       ))}
                     </select>
                     <button
                       onClick={() => handleExpandOrder(order)}
-                      className="p-1 hover:bg-white/5 rounded"
+                      className="p-1 hover:bg-[#15151b] rounded"
                     >
                       {expandedOrder === order.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -375,7 +375,7 @@ export default function AdminOrdersPage() {
                 </div>
 
                 {expandedOrder === order.id && (
-                  <div className="mt-3 pt-3 border-t text-sm">
+                  <div className="mt-3 pt-3 border-t border-white/[0.08] text-sm">
                     <p className="text-white/70 mb-2">
                       <span className="font-medium">Location:</span> {order.customer_location || "Not provided"}
                     </p>
@@ -385,7 +385,7 @@ export default function AdminOrdersPage() {
                       </p>
                     )}
                     {order.customer_id && (
-                      <div className="mb-4 rounded-md border border-white/10 bg-white/[0.03] p-3">
+                      <div className="mb-4 rounded-md border border-white/[0.08] bg-[#0f0f14] p-3">
                         <p className="font-medium text-white mb-2">
                           Customer Intelligence
                         </p>
@@ -409,24 +409,24 @@ export default function AdminOrdersPage() {
                             return (
                               <div className="space-y-3">
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
+                                  <div className="rounded bg-[#111116] border border-white/[0.08] p-2">
                                     <p className="text-xs text-white/60">Orders</p>
                                     <p className="font-semibold">{history.length}</p>
                                   </div>
 
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
+                                  <div className="rounded bg-[#111116] border border-white/[0.08] p-2">
                                     <p className="text-xs text-white/60">Completed</p>
                                     <p className="font-semibold">{completedOrders}</p>
                                   </div>
 
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
+                                  <div className="rounded bg-[#111116] border border-white/[0.08] p-2">
                                     <p className="text-xs text-white/60">Total Spent</p>
                                     <p className="font-semibold">
                                       {formatCurrency(totalSpent)}
                                     </p>
                                   </div>
 
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
+                                  <div className="rounded bg-[#111116] border border-white/[0.08] p-2">
                                     <p className="text-xs text-white/60">First Order</p>
                                     <p className="font-semibold text-xs">
                                       {firstOrder
@@ -448,7 +448,7 @@ export default function AdminOrdersPage() {
                                         .map((customerOrder) => (
                                           <div
                                             key={customerOrder.id}
-                                            className="flex items-center justify-between rounded bg-white/[0.035] border border-white/10 px-2 py-1.5 text-xs"
+                                            className="flex items-center justify-between rounded bg-[#111116] border border-white/[0.08] px-2 py-1.5 text-xs"
                                           >
                                             <span className="font-medium">
                                               {customerOrder.order_number ||

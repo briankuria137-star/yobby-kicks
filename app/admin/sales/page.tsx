@@ -22,24 +22,24 @@ export default async function AdminSalesPage() {
       {sales && sales.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white/[0.035] rounded-lg p-4 shadow-sm border border-white/10">
+            <div className="bg-[#111116] rounded-lg p-4 shadow-sm border border-white/[0.08]">
               <p className="text-xs text-white/60 mb-1">Total Revenue</p>
               <p className="text-xl font-bold">{formatCurrency(totalRevenue)}</p>
             </div>
-            <div className="bg-white/[0.035] rounded-lg p-4 shadow-sm border border-white/10">
+            <div className="bg-[#111116] rounded-lg p-4 shadow-sm border border-white/[0.08]">
               <p className="text-xs text-white/60 mb-1">Total Buying Cost</p>
               <p className="text-xl font-bold">{formatCurrency(totalCost)}</p>
             </div>
-            <div className="bg-white/[0.035] rounded-lg p-4 shadow-sm border border-white/10">
+            <div className="bg-[#111116] rounded-lg p-4 shadow-sm border border-white/[0.08]">
               <p className="text-xs text-white/60 mb-1">Gross Profit</p>
               <p className="text-xl font-bold text-green-600">{formatCurrency(totalProfit)}</p>
             </div>
           </div>
 
-          <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 overflow-hidden">
+          <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-white/[0.03] border-b">
+                <thead className="bg-[#0f0f14] border-b border-white/[0.08]">
                   <tr>
                     <th className="text-left px-4 py-3 font-medium text-white/80">Date</th>
                     <th className="text-left px-4 py-3 font-medium text-white/80">Product</th>
@@ -53,7 +53,7 @@ export default async function AdminSalesPage() {
                 </thead>
                 <tbody className="divide-y">
                   {sales.map((sale: any) => (
-                    <tr key={sale.id} className="hover:bg-white/[0.03]">
+                    <tr key={sale.id} className="hover:bg-[#0f0f14]">
                       <td className="px-4 py-3 text-white/70">{formatDate(sale.created_at)}</td>
                       <td className="px-4 py-3 font-medium">{sale.product_name}</td>
                       <td className="px-4 py-3">{sale.size}</td>
@@ -75,7 +75,7 @@ export default async function AdminSalesPage() {
           </div>
         </>
       ) : (
-        <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 p-12 text-center">
+        <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] p-12 text-center">
           <TrendingUp className="w-10 h-10 text-white/20 mx-auto mb-3" />
           <p className="text-white/60">No sales recorded yet.</p>
           <p className="text-sm text-white/40 mt-1">

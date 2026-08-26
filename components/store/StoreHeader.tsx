@@ -12,7 +12,13 @@ export function StoreHeader({
   const [menuOpen, setMenuOpen] = useState(false);
 
   const businessName =
-    settings.get("business_name") || "YobbyKicks_KE";
+    settings.get("business_name") || "Your Business";
+
+  const businessCategory =
+    settings.get("business_category") || "Online Store";
+
+  const location =
+    settings.get("location") || "Kenya";
 
   const whatsapp = settings.get("whatsapp_number");
 
@@ -45,7 +51,7 @@ export function StoreHeader({
             </div>
 
             <div className="eyebrow mt-0.5 text-white/45 transition-colors duration-300 group-hover:text-white/65">
-              Footwear / Mwihoko
+              {businessCategory} / {location}
             </div>
           </Link>
 
@@ -70,7 +76,7 @@ export function StoreHeader({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Chat with YobbyKicks on WhatsApp"
+                aria-label={`Chat with ${businessName} on WhatsApp`}
                 className="hidden items-center gap-1.5 rounded-full border border-accent/30 bg-accent px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.17em] text-white shadow-[0_12px_35px_rgba(139,92,246,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-violet-400 hover:shadow-[0_20px_50px_rgba(139,92,246,0.32)] active:translate-y-0 md:flex"
               >
                 <MessageCircle className="h-3.5 w-3.5" />
@@ -152,7 +158,7 @@ export function StoreHeader({
             )}
 
             <p className="mt-6 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">
-              Quality mtumba footwear · Mwihoko
+              {settings.get("shop_tagline") || "Quality products · Ready for you"}
             </p>
           </div>
         </div>

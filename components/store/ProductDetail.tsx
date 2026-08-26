@@ -73,18 +73,19 @@ export function ProductDetail({
 
   const whatsapp = settings.get("whatsapp_number");
 
+  const businessName =
+    settings.get("business_name") || "Your Business";
+
   const whatsappUrl = whatsapp
     ? generateWhatsAppMessage(
         whatsapp,
+        businessName,
         product.name,
         product.id,
         product.size,
         product.price
       )
     : null;
-
-  const businessName =
-    settings.get("business_name") || "YobbyKicks_KE";
 
   const currentImage = images[activeImage] || images[0];
 

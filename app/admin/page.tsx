@@ -56,6 +56,19 @@ function getPulse(margin: number, pending: number, lowStock: number) {
 export default async function AdminDashboard() {
   const supabase: any = await createClient();
 
+  const { data: settings } = await supabase
+    .from("settings")
+    .select("*");
+
+  const settingsMap = new Map<string, string>(
+    settings?.map(
+      (s: any) => [s.key, s.value] as [string, string]
+    ) || []
+  );
+
+  const businessName =
+    settingsMap.get("business_name") || "Your Business";
+
   const [
     availableResult,
     soldResult,
@@ -321,7 +334,7 @@ export default async function AdminDashboard() {
         <div className="flex gap-2">
           <Link
             href="/admin/products"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs font-bold transition hover:border-violet-400/40 hover:bg-violet-500/10"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-[#15151b] px-3 py-2.5 text-xs font-bold transition hover:border-violet-400/40 hover:bg-violet-500/10"
           >
             <Plus className="h-4 w-4" />
             Add Product
@@ -338,7 +351,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* BUSINESS PULSE */}
-      <section className="relative mb-6 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-950 via-[#111116] to-[#09090b] p-5 shadow-2xl sm:p-6">
+      <section className="relative mb-6 overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-violet-950 via-[#111116] to-[#09090b] p-5 shadow-2xl sm:p-6">
         <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-fuchsia-500/15 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 left-1/3 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
 
@@ -353,7 +366,7 @@ export default async function AdminDashboard() {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 py-1.5">
+            <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-black/20 px-3 py-1.5">
               <span
                 className={`h-2 w-2 rounded-full ${pulse.dot} shadow-[0_0_10px_currentColor]`}
               />
@@ -466,7 +479,7 @@ export default async function AdminDashboard() {
         ].map(({ label, value, sub, icon: Icon, accent }) => (
           <div
             key={label}
-            className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-white/20 hover:bg-white/[0.055]"
+            className="rounded-2xl border border-white/[0.08] bg-[#111116] p-4 transition hover:border-white/20 hover:bg-[#15151b]"
           >
             <div className="mb-4 flex items-center justify-between">
               <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/65">
@@ -485,7 +498,7 @@ export default async function AdminDashboard() {
       {/* MAIN GRID */}
       <div className="grid gap-6 xl:grid-cols-[1.4fr_0.9fr]">
         {/* SALES MOMENTUM */}
-        <section className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
+        <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between">
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.25em] text-violet-300">
@@ -498,7 +511,7 @@ export default async function AdminDashboard() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
+            <div className="rounded-2xl border border-white/[0.06] bg-black/20 p-4">
               <p className="text-[10px] uppercase tracking-wider text-white/65">
                 Weekly Revenue
               </p>
@@ -507,7 +520,7 @@ export default async function AdminDashboard() {
               </p>
 
               <div className="mt-3 flex items-center gap-2">
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/5">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#15151b]">
                   <div
                     className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-400"
                     style={{
@@ -539,7 +552,7 @@ export default async function AdminDashboard() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
+            <div className="rounded-2xl border border-white/[0.06] bg-black/20 p-4">
               <p className="text-[10px] uppercase tracking-wider text-white/65">
                 Gross Margin
               </p>
@@ -547,7 +560,7 @@ export default async function AdminDashboard() {
                 {formatPercent(profitMargin)}
               </p>
 
-              <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/5">
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#15151b]">
                 <div
                   className="h-full rounded-full bg-gradient-to-r from-lime-400 to-emerald-300"
                   style={{
@@ -562,7 +575,7 @@ export default async function AdminDashboard() {
             </div>
           </div>
 
-          <div className="mt-4 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/5 bg-black/20">
+          <div className="mt-4 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/[0.06] bg-black/20">
             <div className="p-3 text-center">
               <p className="text-[9px] uppercase tracking-wider text-white/60">
                 Today
@@ -591,7 +604,7 @@ export default async function AdminDashboard() {
         </section>
 
         {/* INVENTORY RADAR */}
-        <section className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
+        <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between">
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.25em] text-pink-300">
@@ -645,7 +658,7 @@ export default async function AdminDashboard() {
               </span>
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full bg-white/5">
+            <div className="h-2 overflow-hidden rounded-full bg-[#15151b]">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-pink-500 via-violet-500 to-cyan-400"
                 style={{
@@ -664,7 +677,7 @@ export default async function AdminDashboard() {
                 <Link
                   key={product.id}
                   href={`/admin/products?edit=${product.id}`}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-black/20 p-3 transition hover:border-pink-400/20"
+                  className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-black/20 p-3 transition hover:border-pink-400/20"
                 >
                   <div className="min-w-0">
                     <p className="truncate text-xs font-bold">
@@ -694,7 +707,7 @@ export default async function AdminDashboard() {
       {/* LOWER GRID */}
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
         {/* TOP PERFORMERS */}
-        <section className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
+        <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between">
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.25em] text-cyan-300">
@@ -711,13 +724,13 @@ export default async function AdminDashboard() {
               {topProducts.map((product: any, index: number) => (
                 <div
                   key={product.name}
-                  className="flex items-center gap-3 rounded-2xl border border-white/5 bg-black/20 p-3"
+                  className="flex items-center gap-3 rounded-2xl border border-white/[0.06] bg-black/20 p-3"
                 >
                   <div
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black ${
                       index === 0
                         ? "bg-violet-500 text-white"
-                        : "bg-white/5 text-white/70"
+                        : "bg-[#15151b] text-white/70"
                     }`}
                   >
                     #{index + 1}
@@ -745,7 +758,7 @@ export default async function AdminDashboard() {
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-white/10 p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-white/[0.08] p-8 text-center">
               <Package className="mx-auto h-8 w-8 text-white/75" />
               <p className="mt-3 text-sm font-semibold text-white/50">
                 No sales data yet
@@ -758,7 +771,7 @@ export default async function AdminDashboard() {
         </section>
 
         {/* ACTION CENTER */}
-        <section className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
+        <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 sm:p-6">
           <div className="mb-5">
             <p className="text-[9px] font-black uppercase tracking-[0.25em] text-amber-300">
               YK// ACTION CENTER
@@ -875,7 +888,7 @@ export default async function AdminDashboard() {
       </section>
 
       {/* RECENT ACTIVITY */}
-      <section className="mt-6 rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
+      <section className="mt-6 rounded-3xl border border-white/[0.08] bg-[#111116] p-5 sm:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div>
             <p className="text-[9px] font-black uppercase tracking-[0.25em] text-white/65">
@@ -933,7 +946,7 @@ export default async function AdminDashboard() {
 
       {/* FOOTER */}
       <div className="flex flex-col gap-2 py-6 text-[9px] uppercase tracking-[0.18em] text-white/50 sm:flex-row sm:items-center sm:justify-between">
-        <span>YK// MWIHO KICKS CONTROL SYSTEM</span>
+        <span>{businessName} CONTROL SYSTEM</span>
         <span>{formatDate(now.toISOString())}</span>
       </div>
     </div>

@@ -288,7 +288,7 @@ export default function AdminProductsPage() {
             resetForm();
             setShowForm(!showForm);
           }}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+          className="flex items-center gap-2 bg-[#15151b] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1a1a22]"
         >
           {showForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           {showForm ? "Cancel" : "Add Product"}
@@ -297,7 +297,7 @@ export default function AdminProductsPage() {
 
       {/* Product Form */}
       {showForm && (
-        <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 p-4 mb-6">
+        <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] p-4 mb-6">
           <h2 className="font-semibold text-white mb-4">
             {editingProduct ? "Edit Product" : "Add New Product"}
           </h2>
@@ -313,7 +313,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -326,7 +326,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, category: e.target.value as any })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="men">Men</option>
                   <option value="women">Women</option>
@@ -345,7 +345,7 @@ export default function AdminProductsPage() {
                     setFormData({ ...formData, size: e.target.value })
                   }
                   placeholder="e.g. 38, 42, 10"
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -360,7 +360,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, price: e.target.value })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -374,7 +374,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, buying_cost: e.target.value })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -389,7 +389,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, stock_quantity: e.target.value })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -402,7 +402,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, condition: e.target.value as any })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="new">New / Unused</option>
                   <option value="excellent">Excellent</option>
@@ -419,7 +419,7 @@ export default function AdminProductsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, status: e.target.value as any })
                   }
-                  className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="available">Available</option>
                   <option value="sold">Sold</option>
@@ -438,7 +438,7 @@ export default function AdminProductsPage() {
                   setFormData({ ...formData, condition_description: e.target.value })
                 }
                 placeholder="e.g. Light signs of wear on sole"
-                className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
@@ -452,7 +452,7 @@ export default function AdminProductsPage() {
                   setFormData({ ...formData, description: e.target.value })
                 }
                 rows={3}
-                className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
@@ -467,7 +467,7 @@ export default function AdminProductsPage() {
                     <img
                       src={url}
                       alt="Preview"
-                      className="w-full h-full object-cover rounded-md border"
+                      className="w-full h-full object-cover rounded-md border border-white/[0.08]"
                     />
                     {editingProduct &&
                       editingProduct.product_images?.find(
@@ -489,7 +489,7 @@ export default function AdminProductsPage() {
                   </div>
                 ))}
                 {previewUrls.length < 5 && (
-                  <label className="w-20 h-20 border-2 border-dashed border-white/10 rounded-md flex flex-col items-center justify-center cursor-pointer hover:border-white/30">
+                  <label className="w-20 h-20 border-2 border-dashed border-white/[0.08] rounded-md flex flex-col items-center justify-center cursor-pointer hover:border-white/30">
                     <Upload className="w-5 h-5 text-white/40" />
                     <span className="text-xs text-white/40 mt-1">Add</span>
                     <input
@@ -508,7 +508,7 @@ export default function AdminProductsPage() {
               <button
                 type="submit"
                 disabled={uploading}
-                className="bg-primary text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-white/10 disabled:opacity-50"
+                className="bg-[#15151b] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#1a1a22] disabled:opacity-50"
               >
                 {uploading
                   ? "Saving..."
@@ -522,7 +522,7 @@ export default function AdminProductsPage() {
                   resetForm();
                   setShowForm(false);
                 }}
-                className="px-6 py-2 border border-white/10 rounded-md text-sm font-medium hover:bg-white/[0.03]"
+                className="px-6 py-2 border border-white/[0.08] rounded-md text-sm font-medium hover:bg-[#0f0f14]"
               >
                 Cancel
               </button>
@@ -539,13 +539,13 @@ export default function AdminProductsPage() {
             placeholder="Search products..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 border border-white/10 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full pl-9 pr-3 py-2 border border-white/[0.08] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value as any)}
-          className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="all">All</option>
           <option value="available">Available</option>
@@ -555,7 +555,7 @@ export default function AdminProductsPage() {
       </div>
 
       {/* Products Table */}
-      <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 overflow-hidden">
+      <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] overflow-hidden">
         {loading ? (
           <div className="p-8 text-center text-white/60">Loading...</div>
         ) : products.length === 0 ? (
@@ -568,7 +568,7 @@ export default function AdminProductsPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-white/[0.03] border-b">
+              <thead className="bg-[#0f0f14] border-b border-white/[0.08]">
                 <tr>
                   <th className="text-left px-4 py-3 font-medium text-white/80">
                     Product
@@ -595,7 +595,7 @@ export default function AdminProductsPage() {
               </thead>
               <tbody className="divide-y">
                 {products.map((product) => (
-                  <tr key={product.id} className="hover:bg-white/[0.03]">
+                  <tr key={product.id} className="hover:bg-[#0f0f14]">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         {product.product_images?.[0] ? (
@@ -605,7 +605,7 @@ export default function AdminProductsPage() {
                             className="w-10 h-10 object-cover rounded-md"
                           />
                         ) : (
-                          <div className="w-10 h-10 bg-white/[0.03] rounded-md flex items-center justify-center">
+                          <div className="w-10 h-10 bg-[#0f0f14] rounded-md flex items-center justify-center">
                             <ImageIcon className="w-4 h-4 text-white/40" />
                           </div>
                         )}
@@ -629,7 +629,7 @@ export default function AdminProductsPage() {
                           product.status === "available"
                             ? "bg-green-100 text-green-800"
                             : product.status === "sold"
-                            ? "bg-white/[0.08] text-white/80"
+                            ? "bg-[#1a1a22] text-white/80"
                             : "bg-red-100 text-red-800"
                         }`}
                       >
@@ -640,7 +640,7 @@ export default function AdminProductsPage() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => handleEdit(product)}
-                          className="p-1.5 hover:bg-white/5 rounded-md"
+                          className="p-1.5 hover:bg-[#15151b] rounded-md"
                           title="Edit"
                         >
                           <Pencil className="w-4 h-4 text-white/70" />
@@ -648,7 +648,7 @@ export default function AdminProductsPage() {
                         {product.status === "available" && (
                           <button
                             onClick={() => handleMarkSold(product)}
-                            className="p-1.5 hover:bg-white/5 rounded-md"
+                            className="p-1.5 hover:bg-[#15151b] rounded-md"
                             title="Mark as Sold"
                           >
                             <Trash2 className="w-4 h-4 text-orange-500" />
@@ -657,7 +657,7 @@ export default function AdminProductsPage() {
                         {product.status !== "archived" ? (
                           <button
                             onClick={() => handleArchive(product.id)}
-                            className="p-1.5 hover:bg-white/5 rounded-md"
+                            className="p-1.5 hover:bg-[#15151b] rounded-md"
                             title="Archive"
                           >
                             <Archive className="w-4 h-4 text-white/60" />
@@ -665,7 +665,7 @@ export default function AdminProductsPage() {
                         ) : (
                           <button
                             onClick={() => handleRestore(product.id)}
-                            className="p-1.5 hover:bg-white/5 rounded-md"
+                            className="p-1.5 hover:bg-[#15151b] rounded-md"
                             title="Restore"
                           >
                             <RotateCcw className="w-4 h-4 text-blue-500" />
@@ -673,7 +673,7 @@ export default function AdminProductsPage() {
                         )}
                         <button
                           onClick={() => handleDelete(product.id)}
-                          className="p-1.5 hover:bg-white/5 rounded-md"
+                          className="p-1.5 hover:bg-[#15151b] rounded-md"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4 text-red-500" />

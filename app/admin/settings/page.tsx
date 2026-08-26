@@ -29,12 +29,30 @@ export default function AdminSettingsPage() {
   const handleSave = async () => {
     setSaving(true);
     setSaved(false);
-    for (const [key, value] of Object.entries(settings)) {
-      await supabase.from("settings").update({ value }).eq("key", key);
+
+    try {
+      for (const [key, value] of Object.entries(settings)) {
+        const { error } = await supabase
+          .from("settings")
+          .upsert(
+            { key, value },
+            { onConflict: "key" }
+          );
+
+        if (error) {
+          console.error("Settings save error:", error);
+          throw error;
+        }
+      }
+
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (error) {
+      console.error("Failed to save settings:", error);
+      alert("Failed to save settings. Check your Supabase connection and permissions.");
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
   };
 
   const updateSetting = (key: string, value: string) => {
@@ -56,7 +74,7 @@ export default function AdminSettingsPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white/10 disabled:opacity-50"
+          className="flex items-center gap-2 bg-[#15151b] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1a1a22] disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           {saving ? "Saving..." : "Save Changes"}
@@ -69,7 +87,7 @@ export default function AdminSettingsPage() {
         </div>
       )}
 
-      <div className="bg-white/[0.035] rounded-lg shadow-sm border p-6 space-y-6 max-w-2xl">
+      <div className="bg-[#111116] rounded-lg shadow-sm border border-white/[0.08] p-6 space-y-6 max-w-2xl">
         <div className="flex items-center gap-2 mb-4">
           <Store className="w-5 h-5 text-white/70" />
           <h2 className="font-semibold text-white">Business Information</h2>
@@ -83,7 +101,35 @@ export default function AdminSettingsPage() {
             <input
               value={settings.business_name || ""}
               onChange={(e) => updateSetting("business_name", e.target.value)}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-white/80 mb-1">
+              Business Category
+            </label>
+            <input
+              value={settings.business_category || ""}
+              onChange={(e) =>
+                updateSetting("business_category", e.target.value)
+              }
+              placeholder="e.g. Footwear, Fashion, Electronics"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-white/80 mb-1">
+              Catalogue Tagline
+            </label>
+            <input
+              value={settings.shop_tagline || ""}
+              onChange={(e) =>
+                updateSetting("shop_tagline", e.target.value)
+              }
+              placeholder="e.g. Quality products. Ready for you."
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -94,7 +140,7 @@ export default function AdminSettingsPage() {
             <input
               value={settings.location || ""}
               onChange={(e) => updateSetting("location", e.target.value)}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -106,7 +152,7 @@ export default function AdminSettingsPage() {
               value={settings.whatsapp_number || ""}
               onChange={(e) => updateSetting("whatsapp_number", e.target.value)}
               placeholder="254712345678"
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <p className="text-xs text-white/60 mt-1">
               Example: 254712345678 (Kenya format)
@@ -121,7 +167,7 @@ export default function AdminSettingsPage() {
               value={settings.instagram_username || ""}
               onChange={(e) => updateSetting("instagram_username", e.target.value)}
               placeholder="your_username"
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -133,7 +179,7 @@ export default function AdminSettingsPage() {
               value={settings.shop_description || ""}
               onChange={(e) => updateSetting("shop_description", e.target.value)}
               rows={3}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -145,7 +191,7 @@ export default function AdminSettingsPage() {
               value={settings.delivery_info || ""}
               onChange={(e) => updateSetting("delivery_info", e.target.value)}
               rows={2}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-md border border-white/[0.08] bg-[#111116] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -156,7 +202,7 @@ export default function AdminSettingsPage() {
             <input
               value={settings.currency || "KSh"}
               disabled
-              className="w-full px-3 py-2 border border-white/10 rounded-md text-sm bg-white/[0.03] text-white/60"
+              className="w-full px-3 py-2 border border-white/[0.08] rounded-md text-sm bg-[#0f0f14] text-white/60"
             />
             <p className="text-xs text-white/60 mt-1">Currency is fixed to KSh</p>
           </div>

@@ -3,24 +3,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yobby-kicks.vercel.app"),
-  title: "Yobby Kicks | Quality Mtumba Shoes in Mwihoko, Kenya",
+  title: "Online Store | Quality Products",
   description:
-    "Shop quality second-hand and mtumba shoes for men, women, and kids at Yobby Kicks in Mwihoko, Kenya. Browse our collection and order via WhatsApp.",
+    "Browse quality products from our online store. Explore our collection and order conveniently via WhatsApp.",
   keywords: [
-    "Yobby Kicks",
-    "shoes in Mwihoko",
-    "mtumba shoes Mwihoko",
-    "second hand shoes Kenya",
-    "affordable shoes Kenya",
-    "shoes Ruiru",
-    "mtumba footwear Kenya"
+    "online store",
+    "quality products",
+    "online shopping",
+    "Kenya"
   ],
   openGraph: {
-    title: "Yobby Kicks | Quality Mtumba Shoes in Mwihoko",
+    title: "Online Store | Quality Products",
     description:
-      "Quality second-hand and mtumba footwear in Mwihoko, Kenya.",
+      "Quality products, conveniently available online.",
     url: "https://yobby-kicks.vercel.app",
-    siteName: "Yobby Kicks",
+    siteName: "Online Store",
     type: "website",
     locale: "en_KE"
   },

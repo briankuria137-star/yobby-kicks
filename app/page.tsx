@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "YobbyKicks_KE | Quality Footwear in Kenya",
+  title: "Online Store | Quality Products",
   description:
-    "Shop quality mtumba footwear for men, women and kids from YobbyKicks_KE. Browse available pairs and order conveniently via WhatsApp.",
+    "Browse quality products and order conveniently online.",
 };
 
 export default async function HomePage({
@@ -55,14 +55,17 @@ export default async function HomePage({
   );
 
   const businessName =
-    settingsMap.get("business_name") || "YobbyKicks_KE";
+    settingsMap.get("business_name") || "Your Business";
+
+  const businessCategory =
+    settingsMap.get("business_category") || "Online Store";
 
   const description =
     settingsMap.get("shop_description") ||
     "Quality footwear. Carefully selected. Ready for you.";
 
   const location =
-    settingsMap.get("location") || "Mwihoko, Kenya";
+    settingsMap.get("location") || "Kenya";
 
   const whatsapp = settingsMap.get("whatsapp_number");
 
@@ -90,7 +93,7 @@ export default async function HomePage({
                 <div className="mb-6 flex items-center gap-3">
                   <span className="h-px w-10 bg-accent" />
                   <span className="text-[9px] font-black uppercase tracking-[0.28em] text-white/60">
-                    Curated footwear
+                    {businessCategory}
                   </span>
                 </div>
 
@@ -186,7 +189,7 @@ export default async function HomePage({
                         </div>
 
                         <div className="flex items-center justify-between border-t border-white/5 px-3 pb-2 pt-4">
-                          <p className="yk-number">YobbyKicks_KE</p>
+                          <p className="yk-number">{businessName}</p>
                           <span className="flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.18em] text-white/50">
                             Explore
                             <ArrowUpRight className="h-3 w-3" />
@@ -200,9 +203,8 @@ export default async function HomePage({
                     <div className="text-center">
                       <Sparkles className="mx-auto mb-4 h-8 w-8 text-accent" />
                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">
-                        YobbyKicks
+                        {businessName}
                       </p>
-                      <p className="mt-2 text-4xl font-black text-white">KE</p>
                     </div>
                   </div>
                 )}
@@ -288,7 +290,7 @@ export default async function HomePage({
           <SearchFilters />
 
           {products && products.length > 0 ? (
-            <ProductGrid products={products} whatsapp={whatsapp} />
+            <ProductGrid products={products} whatsapp={whatsapp} businessName={businessName} />
           ) : (
             <div className="rounded-[1.75rem] border border-white/10 bg-surface/90 px-6 py-20 text-center shadow-[0_18px_70px_rgba(0,0,0,0.12)] backdrop-blur-xl">
               <Sparkles className="mx-auto h-8 w-8 text-accent" />

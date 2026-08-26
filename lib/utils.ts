@@ -29,15 +29,16 @@ export function formatDateTime(date: string): string {
 
 export function generateWhatsAppMessage(
   phone: string,
+  businessName: string,
   productName: string,
   productId: string,
   size: string,
   price: number
 ): string {
   const message = encodeURIComponent(
-    `🛍️ YOBBY KICKS — ORDER REQUEST
+    `🛍️ ${businessName.toUpperCase()} — ORDER REQUEST
 
-Hello Yobby Kicks 👋
+Hello ${businessName} 👋
 
 I'd like to order this pair:
 
