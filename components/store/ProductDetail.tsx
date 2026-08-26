@@ -157,6 +157,14 @@ export function ProductDetail({
             )}
             </div>
 
+            {product.stock_quantity === 0 && (
+              <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/30">
+                <span className="rounded-full border border-white/20 bg-black/80 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-xl backdrop-blur-xl">
+                  Sold out
+                </span>
+              </div>
+            )}
+
             {product.stock_quantity > 0 && (
               <div className="absolute left-5 top-5 flex items-center gap-1.5 rounded-full border border-accent/25 bg-black/75 px-4 py-2.5 text-[9px] font-black uppercase tracking-[0.16em] text-white shadow-[0_12px_35px_rgba(0,0,0,0.32)] backdrop-blur-xl">
                 <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
