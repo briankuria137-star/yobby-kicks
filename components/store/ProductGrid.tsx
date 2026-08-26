@@ -118,6 +118,11 @@ export function ProductGrid({
                   {product.name}
                 </h3>
 
+                {product.stock_quantity <= 2 && product.stock_quantity > 0 && (
+                  <p className="mt-2 text-[9px] font-black uppercase tracking-[0.16em] text-amber-500">
+                    Only {product.stock_quantity} {product.stock_quantity === 1 ? "pair" : "pairs"} left
+                  </p>
+                )}
                 <div className="mt-4 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
