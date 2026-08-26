@@ -66,6 +66,13 @@ export function ProductGrid({
                 )}
 
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
+                {product.stock_quantity === 0 && (
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/25">
+                    <span className="rounded-full border border-white/20 bg-black/75 px-4 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl">
+                      Sold out
+                    </span>
+                  </div>
+                )}
 
                 {isNew && (
                   <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-pink-500 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.18em] text-white shadow-lg shadow-pink-500/20">
