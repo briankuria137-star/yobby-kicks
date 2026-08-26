@@ -50,7 +50,7 @@ export function ProductGrid({
               animationDelay: `${Math.min(index * 60, 420)}ms`,
             }}
           >
-            <Link href={`/product/${product.id}`} className="block">
+            <Link href={`/product/${product.id}`} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4">
               <div className="relative aspect-square overflow-hidden bg-black/30">
                 {image ? (
                   <img
