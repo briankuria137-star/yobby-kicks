@@ -162,7 +162,7 @@ export default async function HomePage({
                         </p>
                       </div>
 
-                      <a href={`/product/${products[0].id}`} aria-label={`View ${products[0].name}`} className="group overflow-hidden rounded-[2.75rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_40px_120px_rgba(0,0,0,0.58)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_50px_145px_rgba(0,0,0,0.68)]">
+                      <a href={`/product/${products[0].id}`} aria-label={`View ${products[0].name}`} className="group overflow-hidden rounded-[2.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 border border-white/10 bg-white/[0.045] p-3 shadow-[0_40px_120px_rgba(0,0,0,0.58)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_50px_145px_rgba(0,0,0,0.68)]">
                         <div className="relative aspect-[0.88] overflow-hidden rounded-[2.25rem] bg-white">
                           <img
                             src={products[0].product_images[0].image_url}
