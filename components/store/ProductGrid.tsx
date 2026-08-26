@@ -45,7 +45,7 @@ export function ProductGrid({
         return (
           <article
             key={product.id}
-            className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-surface/90 shadow-[0_22px_75px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-700 ease-out hover:-translate-y-2 hover:border-accent/40 hover:shadow-[0_35px_100px_rgba(0,0,0,0.34)]"
+            className={`group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-surface/90 backdrop-blur-xl transition-all duration-700 ease-out ${product.stock_quantity === 0 ? "border-white/10 opacity-75 grayscale-[0.35]" : "border-white/10 shadow-[0_22px_75px_rgba(0,0,0,0.2)] hover:-translate-y-2 hover:border-accent/40 hover:shadow-[0_35px_100px_rgba(0,0,0,0.34)]"}`}
             style={{
               animationDelay: `${Math.min(index * 60, 420)}ms`,
             }}
