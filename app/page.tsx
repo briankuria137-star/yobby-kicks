@@ -175,7 +175,7 @@ export default async function HomePage({
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                             <div>
                               <p className="text-[8px] font-black uppercase tracking-[0.22em] text-white/60">
-                                Available now
+                                {products[0].stock_quantity <= 2 ? `Only ${products[0].stock_quantity} ${products[0].stock_quantity === 1 ? "pair" : "pairs"} left` : "Available now"}
                               </p>
                               <p className="mt-1 text-lg font-black text-white">
                                 {products[0].name}
@@ -272,7 +272,7 @@ export default async function HomePage({
               </p>
 
               <h2 className="mt-2 text-3xl font-black tracking-[-0.045em] sm:text-4xl">
-                Available now
+                                {products[0].stock_quantity <= 2 ? `Only ${products[0].stock_quantity} ${products[0].stock_quantity === 1 ? "pair" : "pairs"} left` : "Available now"}
               </h2>
 
               <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
