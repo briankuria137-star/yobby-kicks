@@ -225,10 +225,10 @@ export default function AdminOrdersPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-white">Orders</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Orders</h1>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800"
         >
           <Plus className="w-4 h-4" />
           {showForm ? "Cancel" : "New Order"}
@@ -236,43 +236,43 @@ export default function AdminOrdersPage() {
       </div>
 
       {showForm && (
-        <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 p-4 mb-6">
-          <h2 className="font-semibold text-white mb-4">Create Order</h2>
+        <div className="bg-white rounded-lg shadow-sm border p-4 mb-6">
+          <h2 className="font-semibold text-gray-900 mb-4">Create Order</h2>
           <form onSubmit={handleCreateOrder} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <input
                 placeholder="Customer Name"
                 value={formData.customer_name}
                 onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <input
                 placeholder="Phone Number"
                 value={formData.customer_phone}
                 onChange={(e) => setFormData({ ...formData, customer_phone: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <input
                 placeholder="Location"
                 value={formData.customer_location}
                 onChange={(e) => setFormData({ ...formData, customer_location: e.target.value })}
-                className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Add Products</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Add Products</label>
               <div className="border rounded-md p-2 max-h-40 overflow-y-auto">
                 {products.length === 0 ? (
-                  <p className="text-sm text-white/60 p-2">No available products</p>
+                  <p className="text-sm text-gray-500 p-2">No available products</p>
                 ) : (
                   products.map((p) => (
-                    <div key={p.id} className="flex items-center justify-between p-2 hover:bg-white/[0.03] rounded">
+                    <div key={p.id} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
                       <div className="text-sm">
                         <span className="font-medium">{p.name}</span>
-                        <span className="text-white/60 ml-2">Size {p.size}</span>
-                        <span className="text-white/60 ml-2">{formatCurrency(p.price)}</span>
-                        <span className="text-white/40 ml-2">({p.stock_quantity} left)</span>
+                        <span className="text-gray-500 ml-2">Size {p.size}</span>
+                        <span className="text-gray-500 ml-2">{formatCurrency(p.price)}</span>
+                        <span className="text-gray-400 ml-2">({p.stock_quantity} left)</span>
                       </div>
                       <button
                         type="button"
@@ -288,7 +288,7 @@ export default function AdminOrdersPage() {
             </div>
 
             {selectedItems.length > 0 && (
-              <div className="bg-white/[0.03] rounded-md p-3">
+              <div className="bg-gray-50 rounded-md p-3">
                 <p className="text-sm font-medium mb-2">Selected Items</p>
                 {selectedItems.map((item) => (
                   <div key={item.product_id} className="flex items-center justify-between text-sm py-1">
@@ -315,12 +315,12 @@ export default function AdminOrdersPage() {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={2}
-              className="w-full rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
 
             <button
               type="submit"
-              className="bg-primary text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+              className="bg-primary text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-gray-800"
             >
               Create Order
             </button>
@@ -328,12 +328,12 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      <div className="bg-white/[0.035] rounded-lg shadow-sm border border-white/10 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
         {loading ? (
-          <div className="p-8 text-center text-white/60">Loading...</div>
+          <div className="p-8 text-center text-gray-500">Loading...</div>
         ) : orders.length === 0 ? (
-          <div className="p-8 text-center text-white/60">
-            <Package className="w-8 h-8 mx-auto mb-2 text-white/20" />
+          <div className="p-8 text-center text-gray-500">
+            <Package className="w-8 h-8 mx-auto mb-2 text-gray-300" />
             <p>No orders yet.</p>
           </div>
         ) : (
@@ -350,7 +350,7 @@ export default function AdminOrdersPage() {
                         {getOrderStatusLabel(order.status)}
                       </span>
                     </div>
-                    <p className="text-xs text-white/60">
+                    <p className="text-xs text-gray-500">
                       {order.customer_name || "No name"} · {order.customer_phone || "No phone"} · {formatDateTime(order.created_at)}
                     </p>
                     <p className="text-sm font-medium mt-1">{formatCurrency(order.total_amount)}</p>
@@ -359,7 +359,7 @@ export default function AdminOrdersPage() {
                     <select
                       value={order.status}
                       onChange={(e) => handleStatusChange(order.id, e.target.value as Order["status"])}
-                      className="text-xs border border-white/10 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="text-xs border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       {STATUS_OPTIONS.map((s) => (
                         <option key={s} value={s}>{getOrderStatusLabel(s)}</option>
@@ -367,7 +367,7 @@ export default function AdminOrdersPage() {
                     </select>
                     <button
                       onClick={() => handleExpandOrder(order)}
-                      className="p-1 hover:bg-white/5 rounded"
+                      className="p-1 hover:bg-gray-100 rounded"
                     >
                       {expandedOrder === order.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -376,116 +376,18 @@ export default function AdminOrdersPage() {
 
                 {expandedOrder === order.id && (
                   <div className="mt-3 pt-3 border-t text-sm">
-                    <p className="text-white/70 mb-2">
+                    <p className="text-gray-600 mb-2">
                       <span className="font-medium">Location:</span> {order.customer_location || "Not provided"}
                     </p>
                     {order.notes && (
-                      <p className="text-white/70 mb-2">
+                      <p className="text-gray-600 mb-2">
                         <span className="font-medium">Notes:</span> {order.notes}
                       </p>
                     )}
-                    {order.customer_id && (
-                      <div className="mb-4 rounded-md border border-white/10 bg-white/[0.03] p-3">
-                        <p className="font-medium text-white mb-2">
-                          Customer Intelligence
-                        </p>
-
-                        {customerHistoryLoading === order.customer_id ? (
-                          <p className="text-xs text-white/60">
-                            Loading customer history...
-                          </p>
-                        ) : customerHistory[order.customer_id] ? (
-                          (() => {
-                            const history = customerHistory[order.customer_id];
-                            const totalSpent = history.reduce(
-                              (sum, customerOrder) => sum + customerOrder.total_amount,
-                              0
-                            );
-                            const completedOrders = history.filter(
-                              (customerOrder) => customerOrder.status === "completed"
-                            ).length;
-                            const firstOrder = history[history.length - 1];
-
-                            return (
-                              <div className="space-y-3">
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
-                                    <p className="text-xs text-white/60">Orders</p>
-                                    <p className="font-semibold">{history.length}</p>
-                                  </div>
-
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
-                                    <p className="text-xs text-white/60">Completed</p>
-                                    <p className="font-semibold">{completedOrders}</p>
-                                  </div>
-
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
-                                    <p className="text-xs text-white/60">Total Spent</p>
-                                    <p className="font-semibold">
-                                      {formatCurrency(totalSpent)}
-                                    </p>
-                                  </div>
-
-                                  <div className="rounded bg-white/[0.035] border border-white/10 p-2">
-                                    <p className="text-xs text-white/60">First Order</p>
-                                    <p className="font-semibold text-xs">
-                                      {firstOrder
-                                        ? formatDateTime(firstOrder.created_at)
-                                        : "—"}
-                                    </p>
-                                  </div>
-                                </div>
-
-                                {history.length > 1 && (
-                                  <div>
-                                    <p className="text-xs font-medium text-white/80 mb-1">
-                                      Previous Orders
-                                    </p>
-
-                                    <div className="space-y-1">
-                                      {history
-                                        .filter((customerOrder) => customerOrder.id !== order.id)
-                                        .map((customerOrder) => (
-                                          <div
-                                            key={customerOrder.id}
-                                            className="flex items-center justify-between rounded bg-white/[0.035] border border-white/10 px-2 py-1.5 text-xs"
-                                          >
-                                            <span className="font-medium">
-                                              {customerOrder.order_number ||
-                                                `Order #${customerOrder.id.slice(0, 8)}`}
-                                            </span>
-
-                                            <span className="text-white/60">
-                                              {formatDateTime(customerOrder.created_at)}
-                                            </span>
-
-                                            <span className="text-white/70">
-                                              {getOrderStatusLabel(customerOrder.status)}
-                                            </span>
-
-                                            <span className="font-medium">
-                                              {formatCurrency(customerOrder.total_amount)}
-                                            </span>
-                                          </div>
-                                        ))}
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })()
-                        ) : (
-                          <p className="text-xs text-white/60">
-                            No customer history available.
-                          </p>
-                        )}
-                      </div>
-                    )}
-
                     <p className="font-medium mb-1">Items:</p>
                     <div className="space-y-1">
                       {order.items?.map((item) => (
-                        <div key={item.id} className="flex justify-between text-white/70">
+                        <div key={item.id} className="flex justify-between text-gray-600">
                           <span>{item.product_name} (Size {item.size}) x{item.quantity}</span>
                           <span>{formatCurrency(item.price * item.quantity)}</span>
                         </div>

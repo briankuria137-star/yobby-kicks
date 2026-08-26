@@ -35,28 +35,8 @@ export function generateWhatsAppMessage(
   price: number
 ): string {
   const message = encodeURIComponent(
-    `🛍️ YOBBY KICKS — ORDER REQUEST
-
-Hello Yobby Kicks 👋
-
-I'd like to order this pair:
-
-👟 Product: ${productName}
-🆔 Product ID: ${productId}
-📏 Size: ${size}
-💰 Price: KSh ${price.toLocaleString()}
-📦 Quantity: 1
-
-Please confirm:
-1. Availability
-2. Delivery options
-3. Payment instructions
-
-🔖 Product reference: ${productId}
-
-Thank you.`
+    `Hello YobbyKicks_KE! 👋\n\nI'm interested in this pair:\n\n👟 Product: ${productName}\n🆔 ID: ${productId}\n📏 Size: ${size}\n💰 Price: KSh ${price.toLocaleString()}\n\nIs it still available? I'd like to place an order.`
   );
-
   return `https://wa.me/${phone}?text=${message}`;
 }
 
