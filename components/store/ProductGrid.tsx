@@ -164,6 +164,7 @@ export function ProductGrid({
             {whatsappUrl && product.stock_quantity > 0 && (
               <div className="px-4 pb-4">
                 <a
+                  aria-label={`Order ${product.name} on WhatsApp`}
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
