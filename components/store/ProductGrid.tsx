@@ -73,13 +73,24 @@ export function ProductGrid({
                   </div>
                 )}
 
-                {product.stock_quantity > 0 && (
-                  <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-lime-400/20 bg-black/70 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.16em] text-white backdrop-blur-xl">
-                    <CheckCircle2 className="h-3 w-3 text-lime-300" />
-                    Available
-                  </div>
-                )}
-
+                <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/70 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.16em] text-white backdrop-blur-xl">
+                  {product.stock_quantity === 0 ? (
+                    <>
+                      <span className="h-2 w-2 rounded-full bg-red-400" />
+                      Sold out
+                    </>
+                  ) : product.stock_quantity <= 2 ? (
+                    <>
+                      <span className="h-2 w-2 rounded-full bg-amber-300" />
+                      Low stock
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="h-3 w-3 text-lime-300" />
+                      Available
+                    </>
+                  )}
+                </div>
                 <div className="absolute bottom-3 right-3 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-black/75 text-white opacity-0 shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
