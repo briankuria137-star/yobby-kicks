@@ -33,7 +33,7 @@ export function SearchFilters() {
 
   return (
     <div className="mb-8 rounded-[1.75rem] border border-white/10 bg-surface/90 p-3 shadow-[0_18px_70px_rgba(0,0,0,0.16)] backdrop-blur-xl transition-all duration-500 sm:p-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
         {/* SEARCH */}
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-accent/70 transition-colors duration-300" />
@@ -71,7 +71,7 @@ export function SearchFilters() {
         <button
           type="button"
           onClick={applyFilters}
-          className="h-12 rounded-2xl bg-accent px-6 text-xs font-black uppercase tracking-[0.16em] text-white shadow-[0_12px_35px_rgba(139,92,246,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_18px_45px_rgba(139,92,246,0.32)] active:translate-y-0"
+          className="h-12 w-full rounded-2xl bg-accent sm:w-auto px-6 text-xs font-black uppercase tracking-[0.16em] text-white shadow-[0_12px_35px_rgba(139,92,246,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_18px_45px_rgba(139,92,246,0.32)] active:translate-y-0"
         >
           Search
         </button>
