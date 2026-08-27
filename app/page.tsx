@@ -272,7 +272,7 @@ export default async function HomePage({
               </p>
 
               <h2 className="mt-2 text-3xl font-black tracking-[-0.045em] sm:text-4xl">
-                                {products[0].stock_quantity <= 2 ? `Only ${products[0].stock_quantity} ${products[0].stock_quantity === 1 ? "pair" : "pairs"} left` : "Available now"}
+                                {products && products.length > 0 ? "Available now" : "New arrivals"}
               </h2>
 
               <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
