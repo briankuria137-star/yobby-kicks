@@ -103,7 +103,7 @@ export function ProductGrid({
                 </div>
               </div>
 
-              <div className="relative flex min-w-0 flex-col p-4 sm:p-5">
+              <div className="relative flex min-w-0 flex-col p-3 sm:p-5">
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[8px] font-black uppercase tracking-[0.2em] text-accent">
                     {product.category}
@@ -123,7 +123,7 @@ export function ProductGrid({
                     Only {product.stock_quantity} {product.stock_quantity === 1 ? "pair" : "pairs"} left
                   </p>
                 )}
-                <div className="mt-4 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
+                <div className="mt-3 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Size
@@ -143,7 +143,7 @@ export function ProductGrid({
                   </div>
                 </div>
 
-                <div className="mt-5 flex items-end justify-between gap-3">
+                <div className="mt-4 flex items-end justify-between gap-3">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-muted">
                       Price
@@ -162,7 +162,7 @@ export function ProductGrid({
             </Link>
 
             {whatsappUrl && product.stock_quantity > 0 && (
-              <div className="px-4 pb-4">
+              <div className="px-3 pb-3 sm:px-4 sm:pb-4">
                 <a
                   aria-label={`Order ${product.name} on WhatsApp`}
                   href={whatsappUrl}
