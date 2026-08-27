@@ -331,7 +331,7 @@ export function ProductDetail({
         </div>
       </div>
       {isFullscreen && currentImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 touch-pan-y" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => setIsFullscreen(false)}>
+        <div className="fixed inset-0 z-50 flex h-dvh w-dvw items-center justify-center overflow-hidden bg-black/95 p-2 touch-pan-y" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onClick={() => setIsFullscreen(false)}>
           <button
             type="button"
             onClick={() => setIsFullscreen(false)}
@@ -344,7 +344,7 @@ export function ProductDetail({
           <img
             src={currentImage.image_url}
             alt={product.name}
-            className="max-h-[90vh] max-w-full object-contain"
+            className="max-h-[calc(100dvh-2rem)] max-w-[calc(100dvw-1rem)] object-contain"
             onClick={(event) => event.stopPropagation()}
           />
 
