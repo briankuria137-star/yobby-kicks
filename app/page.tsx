@@ -296,7 +296,7 @@ export default async function HomePage({
               <Sparkles className="mx-auto h-8 w-8 text-accent" />
 
               <h3 className="mt-4 text-lg font-bold">
-                New arrivals are coming
+                No pairs found
               </h3>
 
               <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-muted">
@@ -349,6 +349,39 @@ export default async function HomePage({
 
             </div>
           </div>
+        {/* QR CODE */}
+        <section className="border-y border-white/10 bg-surface/95">
+          <div className="luxury-container py-14 md:py-16">
+            <div className="flex flex-col items-center justify-between gap-8 rounded-[2rem] border border-white/10 bg-black/[0.025] p-6 shadow-[0_18px_70px_rgba(0,0,0,0.08)] sm:p-8 md:flex-row md:p-10">
+              <div className="max-w-xl">
+                <p className="eyebrow text-accent">
+                  Scan & shop
+                </p>
+                <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] sm:text-3xl">
+                  Take Yobby Kicks with you.
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Scan the QR code to open our online catalogue and browse the latest available pairs.
+                </p>
+              </div>
+
+              <a
+                href="/qr/yobby-kicks.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Yobby Kicks QR code"
+                className="group shrink-0 rounded-[1.5rem] border border-black/10 bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_25px_65px_rgba(0,0,0,0.18)]"
+              >
+                <img
+                  src="/qr/yobby-kicks.png"
+                  alt="Yobby Kicks QR code"
+                  className="h-40 w-40 sm:h-44 sm:w-44"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
         </section>
 
       </main>
